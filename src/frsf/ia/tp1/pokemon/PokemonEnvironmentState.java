@@ -2,9 +2,12 @@ package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import frsf.cidisi.faia.state.EnvironmentState;
-import frsf.ia.tp1.pokemon.enemigos.*;
+import frsf.ia.tp1.pokemon.enemigos.Enemigo;
+import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
+
 
 public class PokemonEnvironmentState extends EnvironmentState{
 
@@ -78,7 +81,40 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	}
 	
 	private HashMap<Integer, ArrayList<Integer>> cargarMapaSucesoresAmbiente() {
-		return null;
+		
+		HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbienteInicial = new HashMap<>();
+		
+		mapaSucesoresAmbienteInicial.put(1, new ArrayList<Integer>(List.of(2, 4)));
+		mapaSucesoresAmbienteInicial.put(2, new ArrayList<Integer>(List.of(1, 3)));
+		mapaSucesoresAmbienteInicial.put(3, new ArrayList<Integer>(List.of(2, 4)));
+		mapaSucesoresAmbienteInicial.put(4, new ArrayList<Integer>(List.of(1, 3, 5, 7)));
+		mapaSucesoresAmbienteInicial.put(5, new ArrayList<Integer>(List.of(6, 9)));
+		mapaSucesoresAmbienteInicial.put(6, new ArrayList<Integer>(List.of(5, 7)));
+		mapaSucesoresAmbienteInicial.put(7, new ArrayList<Integer>(List.of(4, 6, 8, 29)));
+		mapaSucesoresAmbienteInicial.put(8, new ArrayList<Integer>(List.of(7, 9, 11, 28)));
+		mapaSucesoresAmbienteInicial.put(9, new ArrayList<Integer>(List.of(5, 8, 10)));
+		mapaSucesoresAmbienteInicial.put(10, new ArrayList<Integer>(List.of(9)));
+		mapaSucesoresAmbienteInicial.put(11, new ArrayList<Integer>(List.of(8, 12, 28)));
+		mapaSucesoresAmbienteInicial.put(12, new ArrayList<Integer>(List.of(11, 13)));
+		mapaSucesoresAmbienteInicial.put(13, new ArrayList<Integer>(List.of(12, 14, 22, 26, 27)));
+		mapaSucesoresAmbienteInicial.put(14, new ArrayList<Integer>(List.of(13, 15, 16)));
+		mapaSucesoresAmbienteInicial.put(15, new ArrayList<Integer>(List.of(14)));
+		mapaSucesoresAmbienteInicial.put(16, new ArrayList<Integer>(List.of(14, 17)));
+		mapaSucesoresAmbienteInicial.put(17, new ArrayList<Integer>(List.of(16, 18, 22)));
+		mapaSucesoresAmbienteInicial.put(18, new ArrayList<Integer>(List.of(17, 19)));
+		mapaSucesoresAmbienteInicial.put(19, new ArrayList<Integer>(List.of(18, 20)));
+		mapaSucesoresAmbienteInicial.put(20, new ArrayList<Integer>(List.of(19, 21, 24)));
+		mapaSucesoresAmbienteInicial.put(21, new ArrayList<Integer>(List.of(20, 22)));
+		mapaSucesoresAmbienteInicial.put(22, new ArrayList<Integer>(List.of(13, 17, 21, 23)));
+		mapaSucesoresAmbienteInicial.put(23, new ArrayList<Integer>(List.of(22, 24)));
+		mapaSucesoresAmbienteInicial.put(24, new ArrayList<Integer>(List.of(20, 23, 25)));
+		mapaSucesoresAmbienteInicial.put(25, new ArrayList<Integer>(List.of(24, 26)));
+		mapaSucesoresAmbienteInicial.put(26, new ArrayList<Integer>(List.of(13, 25, 27, 29)));
+		mapaSucesoresAmbienteInicial.put(27, new ArrayList<Integer>(List.of(13, 26, 28)));
+		mapaSucesoresAmbienteInicial.put(28, new ArrayList<Integer>(List.of(8, 11, 27)));
+		mapaSucesoresAmbienteInicial.put(29, new ArrayList<Integer>(List.of(7, 26)));
+		
+		return mapaSucesoresAmbienteInicial;
 	}
 	
 	private ArrayList<Enemigo> cargarListaEnemigos() {
