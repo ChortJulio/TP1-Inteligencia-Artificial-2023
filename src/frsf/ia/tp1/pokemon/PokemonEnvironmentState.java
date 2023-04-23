@@ -2,7 +2,6 @@ package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
@@ -10,10 +9,17 @@ import java.util.Random;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-
+@Getter
+@Setter
 public class PokemonEnvironmentState extends EnvironmentState{
 
+	private int posicionAgente;
 	private LinkedHashMap<Integer, Integer> mapaAmbiente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbiente;
 	private ArrayList<Enemigo> listaEnemigos;
@@ -23,21 +29,21 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	
 	public PokemonEnvironmentState() {
 		
-		this.mapaAmbiente = cargarMapaAmbiente();
-		this.mapaSucesoresAmbiente = cargarMapaSucesoresAmbiente();
-		this.listaEnemigos = cargarListaEnemigos();
-		this.jefeFinal = new EnemigoFinal();
-		this.turnosRestantesParaReabastecerPokebolas = cargarTurnosRestantesParaReabastecerPokebolas();
-		this.turnosRestantesParaUtilizarSatelite = 0;
-		
+		this.initState();
 		
 	}
 	
 	
 	@Override
 	public void initState() {
-		// TODO Auto-generated method stub
 		
+		this.posicionAgente = 1;
+		this.mapaAmbiente = cargarMapaAmbiente();
+		this.mapaSucesoresAmbiente = cargarMapaSucesoresAmbiente();
+		this.listaEnemigos = cargarListaEnemigos();
+		this.jefeFinal = new EnemigoFinal();
+		this.turnosRestantesParaReabastecerPokebolas = cargarTurnosRestantesParaReabastecerPokebolas();
+		this.turnosRestantesParaUtilizarSatelite = 10;
 	}
 
 	@Override
@@ -164,5 +170,5 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		
 		return turnosRestantesParaReabastecerPokebolasInicial;
 	}
-
+	
 }
