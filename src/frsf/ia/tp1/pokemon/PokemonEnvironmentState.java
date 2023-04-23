@@ -42,7 +42,39 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	
 	private HashMap<Integer, Integer> cargarMapaAmbiente() {
 		
-		return null;
+		HashMap<Integer, Integer> mapaAmbienteInicial = new HashMap<>();
+
+		mapaAmbienteInicial.put(1, 0);
+		mapaAmbienteInicial.put(2, 0);
+		mapaAmbienteInicial.put(3, 0);
+		mapaAmbienteInicial.put(4, 0);
+		mapaAmbienteInicial.put(5, 0);
+		mapaAmbienteInicial.put(6, 2);
+		mapaAmbienteInicial.put(7, 0);
+		mapaAmbienteInicial.put(8, 0);
+		mapaAmbienteInicial.put(9, 0);
+		mapaAmbienteInicial.put(10, 0);
+		mapaAmbienteInicial.put(11, 2);
+		mapaAmbienteInicial.put(12, 0);
+		mapaAmbienteInicial.put(13, 0);
+		mapaAmbienteInicial.put(14, 2);
+		mapaAmbienteInicial.put(15, 0);
+		mapaAmbienteInicial.put(16, 0);
+		mapaAmbienteInicial.put(17, 0);
+		mapaAmbienteInicial.put(18, 0);
+		mapaAmbienteInicial.put(19, 0);
+		mapaAmbienteInicial.put(20, 0);
+		mapaAmbienteInicial.put(21, 0);
+		mapaAmbienteInicial.put(22, 0);
+		mapaAmbienteInicial.put(23, 2);
+		mapaAmbienteInicial.put(24, 0);
+		mapaAmbienteInicial.put(25, 0);
+		mapaAmbienteInicial.put(26, 0);
+		mapaAmbienteInicial.put(27, 0);
+		mapaAmbienteInicial.put(28, 0);
+		mapaAmbienteInicial.put(29, 0);
+		
+		return mapaAmbienteInicial;
 	}
 	
 	private HashMap<Integer, ArrayList<Integer>> cargarMapaSucesoresAmbiente() {
