@@ -147,7 +147,22 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	}
 	
 	private HashMap<Integer, Integer> cargarTurnosRestantesParaReabastecerPokebolas() {
-		return null;
+		
+		HashMap<Integer, Integer> turnosRestantesParaReabastecerPokebolasInicial = new HashMap<>();
+		
+		ArrayList<Integer> nodosConPokebolas = new ArrayList<>();
+		
+		for(Integer key : this.mapaAmbiente.keySet()) {
+			if (this.mapaAmbiente.get(key) == 2) {
+				nodosConPokebolas.add(key);
+			}
+		}
+		
+		for(Integer nodoConPokebola : nodosConPokebolas) {
+			turnosRestantesParaReabastecerPokebolasInicial.put(0, nodoConPokebola);
+		}		
+		
+		return turnosRestantesParaReabastecerPokebolasInicial;
 	}
 
 }
