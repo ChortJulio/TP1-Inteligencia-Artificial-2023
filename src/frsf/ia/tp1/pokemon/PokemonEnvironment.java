@@ -11,9 +11,16 @@ public class PokemonEnvironment extends Environment{
 	}
 
 	@Override
+    public PokemonEnvironmentState getEnvironmentState() {
+        return (PokemonEnvironmentState) super.getEnvironmentState();
+    }
+	
+	@Override
 	public Perception getPercept() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PokemonPerception perception = new PokemonPerception();
+		
+		return perception;
 	}
 	
     @Override
