@@ -12,8 +12,8 @@ public class Enemigo {
 	
 	private Random randomGenerator = new Random(Const.seed);
 	
-	public Enemigo() {
-		this.nodo = 24;
+	public Enemigo(int nodo) {
+		this.nodo = nodo;
 		this.energia = this.randomGenerator.nextInt(Const.vidaMaximoEnemigo - Const.vidaMinimoEnemigo + 1) + Const.vidaMinimoEnemigo;
 		this.turnosHastaMoverse = this.randomGenerator.nextInt(Const.turnosMaximoHastaMoverseEnemigo) + Const.turnosMinimoHastaMoverseEnemigo;
 	}

@@ -2,7 +2,10 @@ package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Random;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
@@ -11,7 +14,7 @@ import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
 
 public class PokemonEnvironmentState extends EnvironmentState{
 
-	private HashMap<Integer, Integer> mapaAmbiente;
+	private LinkedHashMap<Integer, Integer> mapaAmbiente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbiente;
 	private ArrayList<Enemigo> listaEnemigos;
 	private EnemigoFinal jefeFinal;
@@ -43,9 +46,9 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		return null;
 	}
 	
-	private HashMap<Integer, Integer> cargarMapaAmbiente() {
+	private LinkedHashMap<Integer, Integer> cargarMapaAmbiente() {
 		
-		HashMap<Integer, Integer> mapaAmbienteInicial = new HashMap<>();
+		LinkedHashMap<Integer, Integer> mapaAmbienteInicial = new LinkedHashMap<>();
 
 		mapaAmbienteInicial.put(1, 0);
 		mapaAmbienteInicial.put(2, 0);
@@ -118,7 +121,29 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	}
 	
 	private ArrayList<Enemigo> cargarListaEnemigos() {
-		return null;
+		
+		ArrayList<Enemigo> listaEnemigosInicial = new ArrayList<>();
+		ArrayList<Integer> nodosVacios = new ArrayList<>();
+
+		for(Integer key : this.mapaAmbiente.keySet()) {
+			if (this.mapaAmbiente.get(key) == 0) {
+				nodosVacios.add(key);
+			}
+		}
+		
+		Random randomGenerator = new Random(Const.seed);
+		
+		while(listaEnemigosInicial.size() < 7) {
+			
+			Enemigo e = new Enemigo(nodosVacios.get(randomGenerator.nextInt(nodosVacios.size())));
+			
+			nodosVacios.remove(e.getNodo());
+			
+			listaEnemigosInicial.add(e);
+		}
+		
+		
+		return listaEnemigosInicial;
 	}
 	
 	private HashMap<Integer, Integer> cargarTurnosRestantesParaReabastecerPokebolas() {

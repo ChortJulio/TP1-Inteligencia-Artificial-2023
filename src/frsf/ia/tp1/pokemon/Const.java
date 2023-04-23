@@ -3,6 +3,7 @@ package frsf.ia.tp1.pokemon;
 public class Const {
 
 	public static long seed = 1;
+	public static int cantidadEnemigos = 7;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
 	public static int vidaMaximoEnemigoFinal = 60;
