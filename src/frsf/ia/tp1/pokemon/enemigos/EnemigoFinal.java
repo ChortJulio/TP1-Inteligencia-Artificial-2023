@@ -12,7 +12,7 @@ public class EnemigoFinal {
 	private Random randomGenerator = new Random(Const.seed);
 	
 	public EnemigoFinal() {
-		this.nodo = 24;
+		this.nodo = Const.nodoPosicionEnemigoFinal;
 		this.energia = this.randomGenerator.nextInt(Const.vidaMaximoEnemigoFinal - Const.vidaMinimoEnemigoFinal + 1) + Const.vidaMinimoEnemigoFinal;
 	}
 	

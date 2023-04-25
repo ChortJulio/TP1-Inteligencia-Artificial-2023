@@ -25,7 +25,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	private ArrayList<Enemigo> listaEnemigos;
 	private EnemigoFinal jefeFinal;
 	private HashMap<Integer, Integer> turnosRestantesParaReabastecerPokebolas;
-	private Integer turnosRestantesParaUtilizarSatelite;
+	private int turnosRestantesParaUtilizarSatelite;
 	
 	public PokemonEnvironmentState() {
 		

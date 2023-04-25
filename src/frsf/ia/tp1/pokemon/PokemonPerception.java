@@ -23,6 +23,14 @@ public class PokemonPerception extends Perception {
     private HashMap<Integer, Integer> contenidoNodosSucesores;
     private HashMap<Integer, Integer> mapaPorSatelite;
     private boolean puedeUsarSatelite;
+    
+    public PokemonPerception() {
+    	
+    }
+    
+    public PokemonPerception(Agent agent, Environment environment) {
+    	super(agent, environment);
+    }
 
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
