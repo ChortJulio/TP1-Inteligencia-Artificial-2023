@@ -41,7 +41,7 @@ public class PokemonPerception extends Perception {
 		// Contiene 0 si es vacio, 2 si es punto de energia y 3 si es el boss final
 		contenidoNodoActual = environmentState.getMapaAmbiente().get(environmentState.getPosicionAgente());
 		energiaEnemigoEnNodoActual = 0;
-		
+		contenidoNodosSucesores = new HashMap<>();
 		mapaPorSatelite = new HashMap<>();
 		
 		/* 
