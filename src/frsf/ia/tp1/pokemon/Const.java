@@ -2,21 +2,32 @@ package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Const {
 
-	public static long seed = 1;
+	public static long seed = 2;
+	public static int nodoInicialAgente = 1;
 	public static int energiaInicialAgente = 20;
-	public static int nodoPosicionEnemigoFinal = 24;
-	public static int cantidadEnemigos = 7;
+	public static int nodoPosicionEnemigoFinal = 5;
+	public static int cantidadEnemigos = 0;
+	public static int cantidadNodos = 7;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
-	public static int vidaMaximoEnemigoFinal = 60;
-	public static int vidaMinimoEnemigoFinal = 30;
+	public static int vidaMaximoEnemigoFinal = 19;
+	public static int vidaMinimoEnemigoFinal = 1;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
-	public static int turnosParaUtilizarSatelite = 10;
+	public static int turnosParaUtilizarSatelite = 0;
 	public static int turnosRestantesParaReabastecerPokebolas = 3;
+	public static int energiaMinimaRecargable = 5;
+	public static int energiaMaximaRecargable = 10;
+	public static int turnosMaximosParaReabastecerPokebolas = 5;
+	public static int cantidadTurnosParaUtilizarSatelite = 10;
+	public static int cantidadTurnosParaUtilizarAtaque = 3;
+	public static double porcentajeRecuperacionEnergiaAtaque0 = 0.2;
+	public static double porcentajeRecuperacionEnergiaAtaque1 = 0.3;
+	public static double porcentajeRecuperacionEnergiaAtaque2 = 0.5;
 	
 	public static int contenidoInicialNodo1 = 0;
 	public static int contenidoInicialNodo2 = 0;
@@ -77,5 +88,10 @@ public class Const {
 	public static ArrayList<Integer> sucesoresNodo27 = new ArrayList<Integer>(List.of(13, 26, 28));
 	public static ArrayList<Integer> sucesoresNodo28 = new ArrayList<Integer>(List.of(8, 11, 27));
 	public static ArrayList<Integer> sucesoresNodo29 = new ArrayList<Integer>(List.of(7, 26));
+	
+	public static int randomBetween(int max, int min) {
+		Random randomGenerator = new Random(Const.seed);
+		return (randomGenerator.nextInt(max - min + 1) + min);
+	}
 
 }
