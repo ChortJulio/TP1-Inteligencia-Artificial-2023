@@ -1,19 +1,17 @@
 package frsf.ia.tp1.pokemon.enemigos;
 
-import java.util.Random;
-
 import frsf.ia.tp1.pokemon.Const;
+import lombok.ToString;
 
+@ToString
 public class EnemigoFinal {
 
 	private int nodo;
 	private int energia;
 	
-	private Random randomGenerator = new Random(Const.seed);
-	
-	public EnemigoFinal() {
-		this.nodo = Const.nodoPosicionEnemigoFinal;
-		this.energia = this.randomGenerator.nextInt(Const.vidaMaximoEnemigoFinal - Const.vidaMinimoEnemigoFinal + 1) + Const.vidaMinimoEnemigoFinal;
+	public EnemigoFinal(int nodo) {
+		this.nodo = nodo;
+		this.energia = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
 	}
 	
 	public int getNodo() {
