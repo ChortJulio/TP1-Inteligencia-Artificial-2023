@@ -9,6 +9,7 @@ import java.util.Random;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
+import frsf.ia.tp1.pokemon.pokeparadas.Pokeparada;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +18,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class PokemonEnvironmentState extends EnvironmentState{
 
 	private int posicionAgente;
 	private LinkedHashMap<Integer, Integer> mapaAmbiente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbiente;
-	private ArrayList<Enemigo> listaEnemigos;
+	private List<Enemigo> listaEnemigos;
 	private EnemigoFinal jefeFinal;
-	private HashMap<Integer, Integer> turnosRestantesParaReabastecerPokebolas;
+	private List<Pokeparada> listaPokeparadas;
 	private int turnosRestantesParaUtilizarSatelite;
 	
 	public PokemonEnvironmentState() {
@@ -33,58 +35,25 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		
 	}
 	
-	
 	@Override
 	public void initState() {
 		
 		this.posicionAgente = 1;
 		this.mapaAmbiente = cargarMapaAmbiente();
 		this.mapaSucesoresAmbiente = cargarMapaSucesoresAmbiente();
+		this.listaPokeparadas = cargarListaPokeparadas();
 		this.listaEnemigos = cargarListaEnemigos();
-		this.jefeFinal = new EnemigoFinal();
-		this.turnosRestantesParaReabastecerPokebolas = cargarTurnosRestantesParaReabastecerPokebolas();
-		this.turnosRestantesParaUtilizarSatelite = 10;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		this.jefeFinal = cargarEnemigoFinal();
+		this.turnosRestantesParaUtilizarSatelite = Const.cantidadTurnosParaUtilizarSatelite;
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAmbiente() {
 		
 		LinkedHashMap<Integer, Integer> mapaAmbienteInicial = new LinkedHashMap<>();
-
-		mapaAmbienteInicial.put(1, Const.contenidoInicialNodo1);
-		mapaAmbienteInicial.put(2, Const.contenidoInicialNodo2);
-		mapaAmbienteInicial.put(3, Const.contenidoInicialNodo3);
-		mapaAmbienteInicial.put(4, Const.contenidoInicialNodo4);
-		mapaAmbienteInicial.put(5, Const.contenidoInicialNodo5);
-		mapaAmbienteInicial.put(6, Const.contenidoInicialNodo6);
-		mapaAmbienteInicial.put(7, Const.contenidoInicialNodo7);
-		mapaAmbienteInicial.put(8, Const.contenidoInicialNodo8);
-		mapaAmbienteInicial.put(9, Const.contenidoInicialNodo9);
-		mapaAmbienteInicial.put(10, Const.contenidoInicialNodo10);
-		mapaAmbienteInicial.put(11, Const.contenidoInicialNodo11);
-		mapaAmbienteInicial.put(12, Const.contenidoInicialNodo12);
-		mapaAmbienteInicial.put(13, Const.contenidoInicialNodo13);
-		mapaAmbienteInicial.put(14, Const.contenidoInicialNodo14);
-		mapaAmbienteInicial.put(15, Const.contenidoInicialNodo15);
-		mapaAmbienteInicial.put(16, Const.contenidoInicialNodo16);
-		mapaAmbienteInicial.put(17, Const.contenidoInicialNodo17);
-		mapaAmbienteInicial.put(18, Const.contenidoInicialNodo18);
-		mapaAmbienteInicial.put(19, Const.contenidoInicialNodo19);
-		mapaAmbienteInicial.put(20, Const.contenidoInicialNodo20);
-		mapaAmbienteInicial.put(21, Const.contenidoInicialNodo21);
-		mapaAmbienteInicial.put(22, Const.contenidoInicialNodo22);
-		mapaAmbienteInicial.put(23, Const.contenidoInicialNodo23);
-		mapaAmbienteInicial.put(24, Const.contenidoInicialNodo24);
-		mapaAmbienteInicial.put(25, Const.contenidoInicialNodo25);
-		mapaAmbienteInicial.put(26, Const.contenidoInicialNodo26);
-		mapaAmbienteInicial.put(27, Const.contenidoInicialNodo27);
-		mapaAmbienteInicial.put(28, Const.contenidoInicialNodo28);
-		mapaAmbienteInicial.put(29, Const.contenidoInicialNodo29);
+		
+		for(int i = 1; i <= Const.cantidadNodos; i++) {
+			mapaAmbienteInicial.put(i, 0);
+		}
 		
 		return mapaAmbienteInicial;
 	}
@@ -126,6 +95,14 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		return mapaSucesoresAmbienteInicial;
 	}
 	
+	private EnemigoFinal cargarEnemigoFinal() {
+		
+		// Cargar jefe final en el mapa del ambiente
+		this.mapaAmbiente.put(Const.nodoPosicionEnemigoFinal, 3);
+		
+		return new EnemigoFinal(Const.nodoPosicionEnemigoFinal);
+	}
+	
 	private ArrayList<Enemigo> cargarListaEnemigos() {
 		
 		ArrayList<Enemigo> listaEnemigosInicial = new ArrayList<>();
@@ -139,36 +116,82 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		
 		Random randomGenerator = new Random(Const.seed);
 		
-		while(listaEnemigosInicial.size() < 7) {
+		while(listaEnemigosInicial.size() < Const.cantidadEnemigos) {
 			
 			Enemigo e = new Enemigo(nodosVacios.get(randomGenerator.nextInt(nodosVacios.size())));
 			
-			nodosVacios.remove(e.getNodo());
+			nodosVacios.remove((Integer) e.getNodo());
 			
 			listaEnemigosInicial.add(e);
-		}
-		
+		}		
 		
 		return listaEnemigosInicial;
 	}
 	
-	private HashMap<Integer, Integer> cargarTurnosRestantesParaReabastecerPokebolas() {
+	private ArrayList<Pokeparada> cargarListaPokeparadas() {
 		
-		HashMap<Integer, Integer> turnosRestantesParaReabastecerPokebolasInicial = new HashMap<>();
+		ArrayList<Pokeparada> listaPokeparadasInicial = new ArrayList<>();
 		
-		ArrayList<Integer> nodosConPokebolas = new ArrayList<>();
+		listaPokeparadasInicial.add(new Pokeparada(6, 0));
+//		listaPokeparadasInicial.add(new Pokeparada(11, 0));
+//		listaPokeparadasInicial.add(new Pokeparada(14, 0));
+//		listaPokeparadasInicial.add(new Pokeparada(19, 0));
+//		listaPokeparadasInicial.add(new Pokeparada(23, 0));
 		
-		for(Integer key : this.mapaAmbiente.keySet()) {
-			if (this.mapaAmbiente.get(key) == 2) {
-				nodosConPokebolas.add(key);
+		mapaAmbiente.put(6, 2);
+//		mapaAmbiente.put(11, 2);
+//		mapaAmbiente.put(14, 2);
+//		mapaAmbiente.put(19, 2);
+//		mapaAmbiente.put(23, 2);
+		
+		return listaPokeparadasInicial;
+	}
+	
+	public void moverEnemigos() {
+		for (Enemigo enemigo : this.listaEnemigos) {
+			if (enemigo.getTurnosHastaMoverse() == 0) {
+				
+				enemigo.setNodo(nodoAlQueSeMueveElEnemigo(enemigo));
+				enemigo.setTurnosHastaMoverse(Const.randomBetween(Const.turnosMaximoHastaMoverseEnemigo, Const.turnosMinimoHastaMoverseEnemigo));
+				
+			} else {
+				enemigo.restarTurnoParaRestablerse();
+			}
+		}
+	}
+	
+	private int nodoAlQueSeMueveElEnemigo(Enemigo e) {
+		List<Integer> listaPosiblesNodos = this.mapaSucesoresAmbiente.get(e.getNodo());
+		
+		Random randomGenerator = new Random(Const.seed);
+		
+		while (listaPosiblesNodos.size() != 0) {
+			
+			int nodoCandidatoAMoverse = listaPosiblesNodos.get(randomGenerator.nextInt(listaPosiblesNodos.size()));
+			
+			if (this.mapaAmbiente.get(nodoCandidatoAMoverse) == 0 && !existePokeparadaEnNodo(nodoCandidatoAMoverse)) {
+				return nodoCandidatoAMoverse;
+			} else {
+				listaPosiblesNodos.remove(nodoCandidatoAMoverse);
 			}
 		}
 		
-		for(Integer nodoConPokebola : nodosConPokebolas) {
-			turnosRestantesParaReabastecerPokebolasInicial.put(0, nodoConPokebola);
-		}		
+		return e.getNodo();
 		
-		return turnosRestantesParaReabastecerPokebolasInicial;
+	}
+	
+	private boolean existePokeparadaEnNodo(Integer nodo) {
+		
+		boolean existePokeparadaEnNodo = false;
+		
+		for (Pokeparada pokeparada : this.listaPokeparadas) {
+			if (pokeparada.getNodo() == nodo) {
+				existePokeparadaEnNodo = true;
+				break;
+			}
+		}
+		
+		return existePokeparadaEnNodo;
 	}
 	
 }
