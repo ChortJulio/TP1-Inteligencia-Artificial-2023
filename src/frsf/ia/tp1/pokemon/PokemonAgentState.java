@@ -4,25 +4,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@ToString
 public class PokemonAgentState extends SearchBasedAgentState {
 	
 	private int nodoActual;
-	private LinkedHashMap<Integer, Integer> mapaAgente;
+	private HashMap<Integer, Integer> mapaAgente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgente;
 	private int energiaInicial;
 	private int energia;
 	private int energiaEnemigo;
-	private ArrayList<Integer> turnosRestantesParaUtilizarAtaquesEspeciales;
+	private List<Integer> turnosRestantesParaUtilizarAtaquesEspeciales;
 	private int escudo;
 	private boolean escapo;
 	private int cantidadPokemonsAdversarios;
@@ -32,10 +39,14 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.initState();
 	}
 	
+	public boolean escapo() {
+		return this.escapo;
+	}
+	
 	@Override
 	public void initState() {
 		
-		this.nodoActual = 1;
+		this.nodoActual = Const.nodoInicialAgente;
 		this.mapaAgente = cargarMapaAgente();
 		this.mapaSucesoresAgente = cargarMapaSucesoresAgente();
 		this.energiaInicial = Const.energiaInicialAgente;
@@ -44,62 +55,80 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.turnosRestantesParaUtilizarAtaquesEspeciales = cargarTurnosRestantesParaUtilizarAtaquesEspeciales();
 		this.escudo = 0;
 		this.escapo = false;
-		this.cantidadPokemonsAdversarios = 10;
+		this.cantidadPokemonsAdversarios = Const.cantidadEnemigos;
 	}
 	
 	public boolean estaVivo() {
 		return (this.energia > 0);
 	}
 	
-	public void curar(Integer cantidadVida) {
+	public void recargarEnergia(int cantidadEnergia) {
 		
-		return;
-	}
-	
-	public boolean noTieneQuePelear() {
+		this.energia += cantidadEnergia;
 		
-		boolean noTieneQuePelear = false;
-		
-		if(this.mapaAgente.get(nodoActual) == 0 || this.escapo) {
-			noTieneQuePelear = true;
+		if(this.energia >= this.energiaInicial*1.25 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(0) == -1) {
+			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(0, 0);
 		}
 		
-		return noTieneQuePelear;
+		if(this.energia >= this.energiaInicial*1.75 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(1) == -1) {
+			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(1, 0);
+		}
+		
+		if(this.energia >= this.energiaInicial*2.2 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(2) == -1) {
+			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(2, 0);
+		}
+	}
+	
+	public boolean puedeMoverse() {
+		
+		boolean puedeMoverse = false;
+		
+		if(this.mapaAgente.get(nodoActual) == 0 || this.escapo) {
+			puedeMoverse = true;
+		}
+		
+		return puedeMoverse;
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAgente() {
 
 		LinkedHashMap<Integer, Integer> mapaAgenteInicial = new LinkedHashMap<>();
+		
+		for (int i = 1; i <= Const.cantidadNodos; i++) {
+			mapaAgenteInicial.put(i, 0);
+		}
+		
+		mapaAgenteInicial.put(Const.nodoPosicionEnemigoFinal, 3);
 
-		mapaAgenteInicial.put(1, Const.contenidoInicialNodo1);
-		mapaAgenteInicial.put(2, Const.contenidoInicialNodo2);
-		mapaAgenteInicial.put(3, Const.contenidoInicialNodo3);
-		mapaAgenteInicial.put(4, Const.contenidoInicialNodo4);
-		mapaAgenteInicial.put(5, Const.contenidoInicialNodo5);
-		mapaAgenteInicial.put(6, Const.contenidoInicialNodo6);
-		mapaAgenteInicial.put(7, Const.contenidoInicialNodo7);
-		mapaAgenteInicial.put(8, Const.contenidoInicialNodo8);
-		mapaAgenteInicial.put(9, Const.contenidoInicialNodo9);
-		mapaAgenteInicial.put(10, Const.contenidoInicialNodo10);
-		mapaAgenteInicial.put(11, Const.contenidoInicialNodo11);
-		mapaAgenteInicial.put(12, Const.contenidoInicialNodo12);
-		mapaAgenteInicial.put(13, Const.contenidoInicialNodo13);
-		mapaAgenteInicial.put(14, Const.contenidoInicialNodo14);
-		mapaAgenteInicial.put(15, Const.contenidoInicialNodo15);
-		mapaAgenteInicial.put(16, Const.contenidoInicialNodo16);
-		mapaAgenteInicial.put(17, Const.contenidoInicialNodo17);
-		mapaAgenteInicial.put(18, Const.contenidoInicialNodo18);
-		mapaAgenteInicial.put(19, Const.contenidoInicialNodo19);
-		mapaAgenteInicial.put(20, Const.contenidoInicialNodo20);
-		mapaAgenteInicial.put(21, Const.contenidoInicialNodo21);
-		mapaAgenteInicial.put(22, Const.contenidoInicialNodo22);
-		mapaAgenteInicial.put(23, Const.contenidoInicialNodo23);
-		mapaAgenteInicial.put(24, Const.contenidoInicialNodo24);
-		mapaAgenteInicial.put(25, Const.contenidoInicialNodo25);
-		mapaAgenteInicial.put(26, Const.contenidoInicialNodo26);
-		mapaAgenteInicial.put(27, Const.contenidoInicialNodo27);
-		mapaAgenteInicial.put(28, Const.contenidoInicialNodo28);
-		mapaAgenteInicial.put(29, Const.contenidoInicialNodo29);
+//		mapaAgenteInicial.put(1, Const.contenidoInicialNodo1);
+//		mapaAgenteInicial.put(2, Const.contenidoInicialNodo2);
+//		mapaAgenteInicial.put(3, Const.contenidoInicialNodo3);
+//		mapaAgenteInicial.put(4, Const.contenidoInicialNodo4);
+//		mapaAgenteInicial.put(5, Const.contenidoInicialNodo5);
+//		mapaAgenteInicial.put(6, Const.contenidoInicialNodo6);
+//		mapaAgenteInicial.put(7, Const.contenidoInicialNodo7);
+//		mapaAgenteInicial.put(8, Const.contenidoInicialNodo8);
+//		mapaAgenteInicial.put(9, Const.contenidoInicialNodo9);
+//		mapaAgenteInicial.put(10, Const.contenidoInicialNodo10);
+//		mapaAgenteInicial.put(11, Const.contenidoInicialNodo11);
+//		mapaAgenteInicial.put(12, Const.contenidoInicialNodo12);
+//		mapaAgenteInicial.put(13, Const.contenidoInicialNodo13);
+//		mapaAgenteInicial.put(14, Const.contenidoInicialNodo14);
+//		mapaAgenteInicial.put(15, Const.contenidoInicialNodo15);
+//		mapaAgenteInicial.put(16, Const.contenidoInicialNodo16);
+//		mapaAgenteInicial.put(17, Const.contenidoInicialNodo17);
+//		mapaAgenteInicial.put(18, Const.contenidoInicialNodo18);
+//		mapaAgenteInicial.put(19, Const.contenidoInicialNodo19);
+//		mapaAgenteInicial.put(20, Const.contenidoInicialNodo20);
+//		mapaAgenteInicial.put(21, Const.contenidoInicialNodo21);
+//		mapaAgenteInicial.put(22, Const.contenidoInicialNodo22);
+//		mapaAgenteInicial.put(23, Const.contenidoInicialNodo23);
+//		mapaAgenteInicial.put(24, Const.contenidoInicialNodo24);
+//		mapaAgenteInicial.put(25, Const.contenidoInicialNodo25);
+//		mapaAgenteInicial.put(26, Const.contenidoInicialNodo26);
+//		mapaAgenteInicial.put(27, Const.contenidoInicialNodo27);
+//		mapaAgenteInicial.put(28, Const.contenidoInicialNodo28);
+//		mapaAgenteInicial.put(29, Const.contenidoInicialNodo29);
 		
 		return mapaAgenteInicial;
 	}
@@ -145,37 +174,71 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		
 		ArrayList<Integer> turnosRestantesParaUtilizarAtaquesEspecialInicial = new ArrayList<>();
 		
+		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(0, -1);
 		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(1, -1);
 		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(2, -1);
-		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(3, -1);
 		
 		return turnosRestantesParaUtilizarAtaquesEspecialInicial;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PokemonAgentState other = (PokemonAgentState) obj;
+		return cantidadPokemonsAdversarios == other.cantidadPokemonsAdversarios && energia == other.energia
+				&& energiaEnemigo == other.energiaEnemigo && energiaInicial == other.energiaInicial
+				&& escapo == other.escapo && escudo == other.escudo && Objects.equals(mapaAgente, other.mapaAgente)
+				&& Objects.equals(mapaSucesoresAgente, other.mapaSucesoresAgente) && nodoActual == other.nodoActual
+				&& Objects.equals(turnosRestantesParaUtilizarAtaquesEspeciales,
+						other.turnosRestantesParaUtilizarAtaquesEspeciales);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public SearchBasedAgentState clone() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PokemonAgentState newState = new PokemonAgentState(
+												this.nodoActual,
+												(HashMap<Integer, Integer>) this.mapaAgente.clone(),
+												(HashMap<Integer, ArrayList<Integer>>) this.mapaSucesoresAgente.clone(),
+												this.energiaInicial,
+												this.energia, 
+												this.energiaEnemigo, 
+												this.turnosRestantesParaUtilizarAtaquesEspeciales.stream().collect(Collectors.toList()), 
+												this.escudo, 
+												this.escapo, 
+												this.cantidadPokemonsAdversarios);
+		
+		return newState;
 	}
 
 	@Override
 	public void updateState(Perception p) {
-		// TODO Auto-generated method stub
+		
+		PokemonPerception percepcion = (PokemonPerception) p;
+		
+		this.nodoActual = percepcion.getPosicionAgente();
+		
+		this.mapaAgente.put(nodoActual, percepcion.getContenidoNodoActual());
+		
+		this.energiaEnemigo = percepcion.getEnergiaEnemigoEnNodoActual();
+		
+		for (Integer nodo : percepcion.getContenidoNodosSucesores().keySet()) {
+			this.mapaAgente.put(nodo, percepcion.getContenidoNodosSucesores().get(nodo));
+		}
+		
+		if (percepcion.isPuedeUsarSatelite()) {
+			this.mapaAgente = (HashMap<Integer, Integer>) percepcion.getMapaPorSatelite().clone();
+		}
 		
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 
