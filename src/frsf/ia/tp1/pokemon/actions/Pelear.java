@@ -82,8 +82,6 @@ public class Pelear extends SearchAction {
 			
 		}
 		
-		
-		
 		return null;
 	}
 

@@ -1,8 +1,12 @@
 package frsf.ia.tp1.pokemon.enemigos;
 
 import frsf.ia.tp1.pokemon.Const;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
+@Setter
+@Getter
 @ToString
 public class EnemigoFinal {
 
@@ -12,18 +16,5 @@ public class EnemigoFinal {
 	public EnemigoFinal(int nodo) {
 		this.nodo = nodo;
 		this.energia = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
-	}
-	
-	public int getNodo() {
-		return nodo;
-	}
-	public void setNodo(int nodo) {
-		this.nodo = nodo;
-	}
-	public int getEnergia() {
-		return energia;
-	}
-	public void setEnergia(int energia) {
-		this.energia = energia;
 	}
 }

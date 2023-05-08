@@ -23,7 +23,7 @@ public class Escapar extends SearchAction {
 			pokemonState.setEnergia(pokemonState.getEnergia() - pokemonState.getEnergiaEnemigo() / 4);
 			pokemonState.setEscapo(true);
 			
-			System.out.println("Se escapÃ³ del nodo: " + nodoActual);
+			System.out.println("Se escapó del nodo: " + nodoActual);
 			return pokemonState;
 		}
 		return null;

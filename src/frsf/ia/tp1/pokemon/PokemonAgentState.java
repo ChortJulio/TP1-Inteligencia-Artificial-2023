@@ -217,6 +217,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		return newState;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void updateState(Perception p) {
 		

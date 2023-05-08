@@ -25,7 +25,8 @@ public class MoverANodo extends SearchAction {
 		
 		int nodoActual = pokemonState.getNodoActual();
 		
-		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) && pokemonState.puedeMoverse()) {
+		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) 
+				&& pokemonState.puedeMoverse()) {
 			System.out.println(" ------------ Mover a nodo --------------");
 			System.out.println("Mover a nodo - Nodo actual: " + nodoActual);
 			
@@ -59,7 +60,8 @@ public class MoverANodo extends SearchAction {
 		
 		int nodoActualAgente = pokemonEnviromentState.getPosicionAgente();
 		
-		if (pokemonState.estaVivo() && pokemonEnviromentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) && pokemonState.puedeMoverse()) {
+		if (pokemonState.estaVivo() && pokemonEnviromentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
+				&& pokemonState.puedeMoverse()) {
 			pokemonEnviromentState.setPosicionAgente(this.nodo);
 			
 			this.avanzarTurno(pokemonState, pokemonEnviromentState);

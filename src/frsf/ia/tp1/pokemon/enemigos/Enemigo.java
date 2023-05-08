@@ -20,7 +20,7 @@ public class Enemigo {
 		this.turnosHastaMoverse = Const.randomBetween(Const.turnosMaximoHastaMoverseEnemigo, Const.turnosMinimoHastaMoverseEnemigo);
 	}
 	
-	public void restarTurnoParaRestablerse() {
+	public void restarTurnoParaMoverse() {
 		this.turnosHastaMoverse -= 1;
 	}
 }

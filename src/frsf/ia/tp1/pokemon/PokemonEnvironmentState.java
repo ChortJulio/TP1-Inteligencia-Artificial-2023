@@ -155,7 +155,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 				enemigo.setTurnosHastaMoverse(Const.randomBetween(Const.turnosMaximoHastaMoverseEnemigo, Const.turnosMinimoHastaMoverseEnemigo));
 				
 			} else {
-				enemigo.restarTurnoParaRestablerse();
+				enemigo.restarTurnoParaMoverse();
 			}
 		}
 	}
