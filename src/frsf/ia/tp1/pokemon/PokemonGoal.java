@@ -3,7 +3,9 @@ package frsf.ia.tp1.pokemon;
 import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
+import lombok.ToString;
 
+@ToString
 public class PokemonGoal extends GoalTest {
 
     @Override
@@ -13,9 +15,11 @@ public class PokemonGoal extends GoalTest {
         
         boolean cumplioMetaFinal = false;
         
+        System.out.println("GoalState: " + estadoPokemon);
+        
         if(estadoPokemon.estaVivo() 
     		&& estadoPokemon.getNodoActual() == Const.nodoPosicionEnemigoFinal
-    		&& estadoAmbiente.getJefeFinal().getEnergia() <= 0) {
+    		&& estadoPokemon.getMapaAgente().get(estadoPokemon.getNodoActual())== 0) {
         	cumplioMetaFinal = true;
         }
         
