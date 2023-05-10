@@ -138,5 +138,20 @@ public class PokemonPerception extends Perception {
 			energiaEnemigoEnNodoActual = environmentState.getJefeFinal().getEnergia();
 		}
 	}
+	
+	/*
+	 * Perception: PokemonPerception(posicionAgente=4, contenidoNodoActual=4, energiaEnemigoEnNodoActual=0, contenidoNodosSucesores={1=0, 3=0, 5=3, 7=0}, mapaPorSatelite={}, puedeUsarSatelite=false)
 
+	 */
+
+	@Override
+	public String toString() {
+		
+		String percepcionPokemon = "----- PERCEPCION POKEMON ------\n";
+		percepcionPokemon += "Posicion agente: "+this.posicionAgente+". Contenido nodo actual: "+this.contenidoNodoActual+".\n";
+		percepcionPokemon += "Energia enemigo en nodo actual: "+this.energiaEnemigoEnNodoActual+". Puede usar satelite: "+this.puedeUsarSatelite+"\n";
+		percepcionPokemon += "Contenido nodos sucesores: "+this.contenidoNodosSucesores+"\n";
+
+		return percepcionPokemon;
+	}
 }

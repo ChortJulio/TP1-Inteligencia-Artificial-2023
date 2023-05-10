@@ -27,15 +27,16 @@ public class MoverANodo extends SearchAction {
 		
 		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) 
 				&& pokemonState.puedeMoverse()) {
-			System.out.println(" ------------ Mover a nodo --------------");
-			System.out.println("Mover a nodo - Nodo actual: " + nodoActual);
+			
+			//System.out.println(" ------------ Mover a nodo --------------");
+			//System.out.println("Mover a nodo - Nodo actual: " + nodoActual);
 			
 			pokemonState.setNodoActual(this.nodo);
 			pokemonState.setEscapo(false);
 			pokemonState.setEscudo(0);
 			
-			System.out.println("Mover a nodo - Nodo al que se movio: " + this.nodo);
-			System.out.println("Mover a nodo - Mapa agente: " + pokemonState.getMapaAgente());
+			//System.out.println("Mover a nodo - Nodo al que se movio: " + this.nodo);
+			//System.out.println("Mover a nodo - Mapa agente: " + pokemonState.getMapaAgente());
 			
 			
 			
@@ -55,18 +56,19 @@ public class MoverANodo extends SearchAction {
 		
 		System.out.println("Mover a nodo - Este es el metodo execute que cambia el ambiente");
 		
-		PokemonEnvironmentState pokemonEnviromentState = (PokemonEnvironmentState) est;
+		PokemonEnvironmentState pokemonEnvironmentState = (PokemonEnvironmentState) est;
 		PokemonAgentState pokemonState = ((PokemonAgentState) ast);
 		
-		int nodoActualAgente = pokemonEnviromentState.getPosicionAgente();
+		int nodoActualAgente = pokemonEnvironmentState.getPosicionAgente();
 		
-		if (pokemonState.estaVivo() && pokemonEnviromentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
+		if (pokemonState.estaVivo() && pokemonEnvironmentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
 				&& pokemonState.puedeMoverse()) {
-			pokemonEnviromentState.setPosicionAgente(this.nodo);
+			pokemonEnvironmentState.setPosicionAgente(this.nodo);
 			
-			this.avanzarTurno(pokemonState, pokemonEnviromentState);
+			this.avanzarTurno(pokemonState, pokemonEnvironmentState);			
+			Const.imprimirMapaActual("mover a nodo", pokemonEnvironmentState.getMapaAmbiente(), this.nodo);
 			
-			return pokemonEnviromentState;
+			return pokemonEnvironmentState;
 		}
 		
 		return null;

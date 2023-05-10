@@ -15,7 +15,7 @@ public class PokemonGoal extends GoalTest {
         
         boolean cumplioMetaFinal = false;
         
-        System.out.println("GoalState: " + estadoPokemon);
+        System.out.println(estadoPokemon);
         
         if(estadoPokemon.estaVivo() 
     		&& estadoPokemon.getNodoActual() == Const.nodoPosicionEnemigoFinal

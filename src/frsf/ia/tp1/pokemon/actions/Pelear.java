@@ -25,7 +25,7 @@ public class Pelear extends SearchAction {
 			 !pokemonState.escapo()) {
 			
 			System.out.println("--------- Pelear --------- ");
-			System.out.println("Estado del agente: " + pokemonState);
+			System.out.println(pokemonState);
 			
 			if (pokemonState.getEscudo() < pokemonState.getEnergiaEnemigo()) {
 				pokemonState.setEnergia(pokemonState.getEnergia() - (pokemonState.getEnergiaEnemigo() - pokemonState.getEscudo()));

@@ -1,6 +1,7 @@
 package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ public class Const {
 	public static int energiaInicialAgente = 20;
 	public static int nodoPosicionEnemigoFinal = 5;
 	public static int cantidadEnemigos = 0;
-	public static int cantidadNodos = 7;
+	public static int cantidadNodos = 29;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
 	public static int vidaMaximoEnemigoFinal = 19;
@@ -92,6 +93,30 @@ public class Const {
 	public static int randomBetween(int max, int min) {
 		Random randomGenerator = new Random(Const.seed);
 		return (randomGenerator.nextInt(max - min + 1) + min);
+	}
+	
+	public static void imprimirMapaActual(String accionEjecutada, LinkedHashMap<Integer, Integer> m, int nodoActualAgente) {
+		
+		//m.put(nodoActualAgente, 4); //VER
+		
+		String mapaActual = "+-----------------------------------------------+\n";
+		mapaActual += "|        "+m.get(11)+"  ------ "+m.get(12)+"  ---- "+m.get(13)+"  -------- "+m.get(14)+"  --- "+m.get(15)+" |\n";
+		mapaActual += "|        | \\             / |  \\         \\       |\n";
+		mapaActual += "|"+m.get(10)+"       |   "+m.get(28)+"  ----- "+m.get(27)+"   /    \\         \\      |\n";
+		mapaActual += "| \\     |  /          |  /      \\        "+m.get(16)+"      |\n";
+		mapaActual += "|  "+m.get(8)+" --- "+m.get(9)+"            | /        \\        \\     |\n";
+		mapaActual += "| /      |            |/          \\        \\    |\n";
+		mapaActual += "|"+m.get(5)+" - "+m.get(6)+" - "+m.get(7)+" --- "+m.get(29)+"  -- "+m.get(26)+"       "+m.get(23)+"  -- "+m.get(22)+"  ----- "+m.get(17)+"   |\n";
+		mapaActual += "|  \\    /             |      |      |       |   |\n";
+		mapaActual += "|    "+m.get(4)+" --- "+m.get(3)+"          |      |      "+m.get(21)+"       "+m.get(18)+"   |\n";
+		mapaActual += "|    |    /           |      |      |       |   |\n";
+		mapaActual += "|    |   "+m.get(2)+"            "+m.get(25)+"  --- "+m.get(24)+"  --- "+m.get(20)+"  ---- "+m.get(19)+"   |\n";
+		mapaActual += "|    | /                                        |\n";
+		mapaActual += "|    "+m.get(1)+"                                          |\n";		
+		mapaActual += "+-----------------------------------------------+\n";
+		
+		System.out.println("Acción ejecutada: "+accionEjecutada.toUpperCase());
+		System.out.println(mapaActual);
 	}
 
 }

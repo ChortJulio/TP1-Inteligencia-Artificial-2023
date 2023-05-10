@@ -7,6 +7,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="H:/Descargas/Instaladores/lombok.jar"/>
+	<classpathentry kind="lib" path="H:/Facultad/5to/Inteligencia Artificial/IA-eclipse-workspace/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

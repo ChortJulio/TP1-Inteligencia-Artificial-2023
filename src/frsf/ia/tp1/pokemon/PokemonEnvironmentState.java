@@ -193,5 +193,19 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		
 		return existePokeparadaEnNodo;
 	}
+	/*
+	 * Environment: PokemonEnvironmentState(posicionAgente=4, listaEnemigos=[], jefeFinal=EnemigoFinal(nodo=5, energia=5), listaPokeparadas=[Pokeparada(nodo=6, turnosParaRestablecerse=5)], turnosRestantesParaUtilizarSatelite=9)
+*/
+	@Override
+	public String toString() {
+		
+		String estadoAmbiente = "----- ESTADO AMBIENTE ------\n";
+		estadoAmbiente += "Posicion agente: "+this.posicionAgente+". Lista enemigos: "+this.listaEnemigos+".\n";
+		estadoAmbiente += "Posicion jefe final: "+this.jefeFinal.getNodo()+". Energia jefe final: "+this.jefeFinal.getEnergia()+"\n";
+		//estadoAmbiente += "Lista pokeparadas: "+this.listaPokeparadas+". Turnos restantes para satelite: "+this.turnosRestantesParaUtilizarSatelite+"\n";
+		estadoAmbiente += "Turnos restantes para satelite: "+this.turnosRestantesParaUtilizarSatelite+"\n";
+
+		return estadoAmbiente;
+	}
 	
 }
