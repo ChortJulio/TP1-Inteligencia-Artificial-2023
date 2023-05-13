@@ -43,6 +43,12 @@ public class Curarse extends SearchAction {
 		int nodoActualAgente = pokemonEnviromentState.getPosicionAgente();
 		
 		if (pokemonState.estaVivo() && pokemonEnviromentState.getMapaAmbiente().get(nodoActualAgente) == 2) {
+			
+			// Actualizar agente
+			pokemonState.recargarEnergia(Const.randomBetween(Const.energiaMaximaRecargable, Const.energiaMinimaRecargable));
+			pokemonState.getMapaAgente().put(nodoActualAgente, 0);
+			
+			// Actualizar ambiente
 			pokemonEnviromentState.getMapaAmbiente().put(nodoActualAgente, 0);
 			
 			for (Pokeparada pokeparada : pokemonEnviromentState.getListaPokeparadas()) {
