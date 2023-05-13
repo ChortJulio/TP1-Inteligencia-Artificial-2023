@@ -11,9 +11,9 @@ public class Const {
 	public static long seed = 2;
 	public static int nodoInicialAgente = 1;
 	public static int energiaInicialAgente = 20;
-	public static int nodoPosicionEnemigoFinal = 5;
-	public static int cantidadEnemigos = 0;
-	public static int cantidadNodos = 8;
+	public static int nodoPosicionEnemigoFinal = 8;
+	public static int cantidadEnemigos = 1;
+	public static int cantidadNodos = 10;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
 	public static int vidaMaximoEnemigoFinal = 24;
@@ -22,8 +22,8 @@ public class Const {
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
 	public static int turnosParaUtilizarSatelite = 0;
 	public static int turnosRestantesParaReabastecerPokebolas = 3;
-	public static int energiaMinimaRecargable = 5;
-	public static int energiaMaximaRecargable = 10;
+	public static int energiaMinimaRecargable = 10;
+	public static int energiaMaximaRecargable = 11;
 	public static int turnosMaximosParaReabastecerPokebolas = 5;
 	public static int cantidadTurnosParaUtilizarSatelite = 0;
 	public static int cantidadTurnosParaUtilizarAtaque = 3;
@@ -126,7 +126,7 @@ public class Const {
 		return (randomGenerator.nextInt(max - min + 1) + min);
 	}
 	
-	public static void imprimirMapaActual(String accionEjecutada, LinkedHashMap<Integer, Integer> mapa, int nodoActualAgente) {
+	public static void imprimirMapaActual(String accionEjecutada, HashMap<Integer, Integer> mapa, int nodoActualAgente) {
 		HashMap<Integer, String> caracteres = new LinkedHashMap<>();
 		
 		for (Integer i : mapa.keySet()) {

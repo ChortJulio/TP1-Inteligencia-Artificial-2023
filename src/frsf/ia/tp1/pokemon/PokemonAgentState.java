@@ -84,17 +84,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	
 	public boolean puedeMoverse(Integer nodoAlQueSeMueve) {
 		
-		if(this.escapo) return true;
-		
-		if(this.mapaAgente.get(nodoActual) == 0) {
-			
-			if((this.mapaAgente.get(nodoAlQueSeMueve) == 1 || this.mapaAgente.get(nodoAlQueSeMueve) == 3) && 
-				this.energiaEnemigosSucesores.getOrDefault(nodoAlQueSeMueve, 0) > this.energia) {
-					return false;
-			}
-			
-			return true;
-		}
+		if(this.mapaAgente.get(nodoActual) == 0 || this.escapo) return true;
 		
 		return false;
 	}

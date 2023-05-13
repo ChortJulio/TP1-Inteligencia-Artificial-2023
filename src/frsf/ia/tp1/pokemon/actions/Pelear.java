@@ -59,7 +59,7 @@ public class Pelear extends SearchAction {
 		
 		if ( pokemonState.estaVivo() && !pokemonState.escapo()) {
 			
-			System.out.println("Pelear dentro del execute del ambiente");
+			//System.out.println("Pelear dentro del execute del ambiente");
 			
 			if (pokemonState.getEscudo() < pokemonState.getEnergiaEnemigo()) {
 				pokemonState.setEnergia(pokemonState.getEnergia() - (pokemonState.getEnergiaEnemigo() - pokemonState.getEscudo()));
