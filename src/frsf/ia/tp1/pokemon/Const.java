@@ -125,12 +125,12 @@ public class Const {
 	public static void imprimirCartelVictoria() {
 		
 		String cartelVictoria = "+-----------------------------------------------+\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "| __         __   _                             |\n";
+		cartelVictoria += "| \\ \\       / /  | |                                 |\n";
+		cartelVictoria += "|  \\ \\     / /   | |                                |\n";
+		cartelVictoria += "|   \\ \\   / /    | |                                |\n";
+		cartelVictoria += "|    \\ \\_/ /     | |                                   |\n";
+		cartelVictoria += "|     \\___/      |_|                             |\n";
 		cartelVictoria += "|                                               |\n";
 		cartelVictoria += "+-----------------------------------------------+\n";
 		
