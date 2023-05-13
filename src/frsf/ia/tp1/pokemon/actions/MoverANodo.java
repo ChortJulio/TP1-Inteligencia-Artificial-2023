@@ -76,6 +76,11 @@ public class MoverANodo extends SearchAction {
 	
 	private void avanzarTurno(PokemonAgentState pokemonState, PokemonEnvironmentState pokemonEnviromentState) {
 		
+		// Actualizar agente
+		pokemonState.setNodoActual(this.nodo);
+		pokemonState.setEscapo(false);
+		pokemonState.setEscudo(0);
+		
 		// Actualizar Pokeparadas
 		for (Pokeparada pokeparada: pokemonEnviromentState.getListaPokeparadas()) {
 			

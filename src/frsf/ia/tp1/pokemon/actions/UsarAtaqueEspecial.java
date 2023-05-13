@@ -50,8 +50,13 @@ public class UsarAtaqueEspecial extends SearchAction {
 		int nodoActual = pokemonEnviromentState.getPosicionAgente();
 		
 		if (pokemonState.estaVivo() &&
-				pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().get(numeroAtaque) == 0 &&
-				pokemonState.getMapaAgente().get(nodoActual) == 1) {
+			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().get(numeroAtaque) == 0 &&
+			pokemonState.getMapaAgente().get(nodoActual) == 1) {
+			
+			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*porcentajeRecuperacionEnergia));
+			
+			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().set(numeroAtaque, Const.cantidadTurnosParaUtilizarAtaque);
+			
 			
 			return pokemonEnviromentState;
 		}
