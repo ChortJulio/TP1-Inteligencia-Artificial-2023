@@ -1,6 +1,7 @@
 package frsf.ia.tp1.pokemon;
 
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -22,6 +23,7 @@ public class PokemonPerception extends Perception {
     
     // Que hay en los nodos sucesores
     private HashMap<Integer, Integer> contenidoNodosSucesores;
+    private HashMap<Integer, Integer> energiaEnemigosSucesores;
     private HashMap<Integer, Integer> mapaPorSatelite;
     private boolean puedeUsarSatelite;
     
@@ -43,6 +45,7 @@ public class PokemonPerception extends Perception {
 		contenidoNodoActual = environmentState.getMapaAmbiente().get(environmentState.getPosicionAgente());
 		energiaEnemigoEnNodoActual = 0;
 		contenidoNodosSucesores = new HashMap<>();
+		energiaEnemigosSucesores = new HashMap<>();
 		mapaPorSatelite = new HashMap<>();
 		
 		/* 
@@ -56,7 +59,7 @@ public class PokemonPerception extends Perception {
 		// Si se tiene el satelite, se setea la bandera para que lo sepa el agente
 		if (environmentState.getTurnosRestantesParaUtilizarSatelite() == 0) {
 			puedeUsarSatelite = true;
-			mapaPorSatelite = (HashMap<Integer, Integer>) environmentState.getMapaSucesoresAmbiente().clone();
+			mapaPorSatelite = (HashMap<Integer, Integer>) environmentState.getMapaAmbiente().clone();
 		}
 		
 		/*
@@ -72,6 +75,7 @@ public class PokemonPerception extends Perception {
 			// Si hay un enemigo en un sucesor, se agrega esta informacion a contenidoNodosSucesores
 			if (contenidoNodosSucesores.keySet().contains(e.getNodo()))	{
 				contenidoNodosSucesores.put(e.getNodo(), 1);
+				energiaEnemigosSucesores.put(e.getNodo(), e.getEnergia());
 			}
 			
 			// Si se tiene que pasar el satelite, se agrega la informacion de que hay un enemigo al mapa
@@ -83,7 +87,10 @@ public class PokemonPerception extends Perception {
 			if (environmentState.getJefeFinal().getEnergia() > 0) {
 				energiaEnemigoEnNodoActual = environmentState.getJefeFinal().getEnergia();
 			}
-			
+		}
+		
+		if (environmentState.getMapaSucesoresAmbiente().get(environmentState.getPosicionAgente()).contains(Const.nodoPosicionEnemigoFinal)) {
+			energiaEnemigosSucesores.put(Const.nodoPosicionEnemigoFinal, environmentState.getJefeFinal().getEnergia());
 		}
     }
 

@@ -13,11 +13,11 @@ public class Const {
 	public static int energiaInicialAgente = 20;
 	public static int nodoPosicionEnemigoFinal = 5;
 	public static int cantidadEnemigos = 0;
-	public static int cantidadNodos = 29;
+	public static int cantidadNodos = 8;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
-	public static int vidaMaximoEnemigoFinal = 19;
-	public static int vidaMinimoEnemigoFinal = 1;
+	public static int vidaMaximoEnemigoFinal = 24;
+	public static int vidaMinimoEnemigoFinal = 23;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
 	public static int turnosParaUtilizarSatelite = 0;
@@ -25,7 +25,7 @@ public class Const {
 	public static int energiaMinimaRecargable = 5;
 	public static int energiaMaximaRecargable = 10;
 	public static int turnosMaximosParaReabastecerPokebolas = 5;
-	public static int cantidadTurnosParaUtilizarSatelite = 10;
+	public static int cantidadTurnosParaUtilizarSatelite = 0;
 	public static int cantidadTurnosParaUtilizarAtaque = 3;
 	public static double porcentajeRecuperacionEnergiaAtaque0 = 0.2;
 	public static double porcentajeRecuperacionEnergiaAtaque1 = 0.3;
@@ -61,11 +61,41 @@ public class Const {
 	public static int contenidoInicialNodo28 = 0;
 	public static int contenidoInicialNodo29 = 0;
 	
+//	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
+//	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(3));
+//	public static ArrayList<Integer> sucesoresNodo3 = new ArrayList<Integer>(List.of(4));
+//	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(5, 7));
+//	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(6, 9));
+//	public static ArrayList<Integer> sucesoresNodo6 = new ArrayList<Integer>(List.of(7));
+//	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(8, 29));
+//	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9, 11, 28));
+//	public static ArrayList<Integer> sucesoresNodo9 = new ArrayList<Integer>(List.of(5, 8, 10));
+//	public static ArrayList<Integer> sucesoresNodo10 = new ArrayList<Integer>(List.of(9));
+//	public static ArrayList<Integer> sucesoresNodo11 = new ArrayList<Integer>(List.of(8, 12, 28));
+//	public static ArrayList<Integer> sucesoresNodo12 = new ArrayList<Integer>(List.of(11, 13));
+//	public static ArrayList<Integer> sucesoresNodo13 = new ArrayList<Integer>(List.of(12, 14, 22, 26, 27));
+//	public static ArrayList<Integer> sucesoresNodo14 = new ArrayList<Integer>(List.of(13, 15, 16));
+//	public static ArrayList<Integer> sucesoresNodo15 = new ArrayList<Integer>(List.of(14));
+//	public static ArrayList<Integer> sucesoresNodo16 = new ArrayList<Integer>(List.of(14, 17));
+//	public static ArrayList<Integer> sucesoresNodo17 = new ArrayList<Integer>(List.of(16, 18, 22));
+//	public static ArrayList<Integer> sucesoresNodo18 = new ArrayList<Integer>(List.of(17, 19));
+//	public static ArrayList<Integer> sucesoresNodo19 = new ArrayList<Integer>(List.of(18, 20));
+//	public static ArrayList<Integer> sucesoresNodo20 = new ArrayList<Integer>(List.of(19, 21, 24));
+//	public static ArrayList<Integer> sucesoresNodo21 = new ArrayList<Integer>(List.of(20, 22));
+//	public static ArrayList<Integer> sucesoresNodo22 = new ArrayList<Integer>(List.of(13, 17, 21, 23));
+//	public static ArrayList<Integer> sucesoresNodo23 = new ArrayList<Integer>(List.of(22, 24));
+//	public static ArrayList<Integer> sucesoresNodo24 = new ArrayList<Integer>(List.of(20, 23, 25));
+//	public static ArrayList<Integer> sucesoresNodo25 = new ArrayList<Integer>(List.of(24, 26));
+//	public static ArrayList<Integer> sucesoresNodo26 = new ArrayList<Integer>(List.of(13, 25, 27, 29));
+//	public static ArrayList<Integer> sucesoresNodo27 = new ArrayList<Integer>(List.of(13, 26, 28));
+//	public static ArrayList<Integer> sucesoresNodo28 = new ArrayList<Integer>(List.of(8, 11, 27));
+//	public static ArrayList<Integer> sucesoresNodo29 = new ArrayList<Integer>(List.of(7, 26));
+	
 	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
 	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
 	public static ArrayList<Integer> sucesoresNodo3 = new ArrayList<Integer>(List.of(2, 4));
 	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(1, 3, 5, 7));
-	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(6, 9));
+	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(4, 6, 9));
 	public static ArrayList<Integer> sucesoresNodo6 = new ArrayList<Integer>(List.of(5, 7));
 	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8, 29));
 	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9, 11, 28));
@@ -110,7 +140,7 @@ public class Const {
 		mapaActual += "|        | \\             / |  \\         \\       |\n";
 		mapaActual += "|"+caracteres.get(10)+"       |   "+caracteres.get(28)+"  ----- "+caracteres.get(27)+"   /    \\         \\      |\n";
 		mapaActual += "| \\     |  /          |  /      \\        "+caracteres.get(16)+"      |\n";
-		mapaActual += "|  "+caracteres.get(8)+" --- "+caracteres.get(9)+"            | /        \\        \\     |\n";
+		mapaActual += "|  "+caracteres.get(9)+" --- "+caracteres.get(8)+"            | /        \\        \\     |\n";
 		mapaActual += "| /      |            |/          \\        \\    |\n";
 		mapaActual += "|"+caracteres.get(5)+" - "+caracteres.get(6)+" - "+caracteres.get(7)+" --- "+caracteres.get(29)+"  -- "+caracteres.get(26)+"       "+caracteres.get(23)+"  -- "+caracteres.get(22)+"  ----- "+caracteres.get(17)+"   |\n";
 		mapaActual += "|  \\    /             |      |      |       |   |\n";
@@ -121,7 +151,7 @@ public class Const {
 		mapaActual += "|    "+caracteres.get(1)+"                                          |\n";		
 		mapaActual += "+-----------------------------------------------+\n";
 		
-		System.out.println("Acción ejecutada: "+accionEjecutada.toUpperCase());
+		System.out.println("Acciï¿½n ejecutada: "+accionEjecutada.toUpperCase());
 		System.out.println(mapaActual);
 	}
 

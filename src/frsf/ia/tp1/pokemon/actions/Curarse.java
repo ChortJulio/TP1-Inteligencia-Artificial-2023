@@ -20,9 +20,12 @@ public class Curarse extends SearchAction {
 		int nodoActual = pokemonState.getNodoActual();
 		
 		if (pokemonState.estaVivo() && pokemonState.getMapaAgente().get(nodoActual) == 2) {
+			
 			pokemonState.recargarEnergia(Const.randomBetween(Const.energiaMaximaRecargable, Const.energiaMinimaRecargable));
 			pokemonState.getMapaAgente().put(nodoActual, 0);
 			
+			System.out.println("por dios ayuda");
+			System.out.println(pokemonState);
 			return pokemonState;
 		}
 		

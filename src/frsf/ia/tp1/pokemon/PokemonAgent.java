@@ -13,6 +13,7 @@ import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.IStepCostFunction;
 import frsf.cidisi.faia.solver.search.Search;
+import frsf.cidisi.faia.solver.search.UniformCostSearch;
 import frsf.ia.tp1.pokemon.actions.Curarse;
 import frsf.ia.tp1.pokemon.actions.Escapar;
 import frsf.ia.tp1.pokemon.actions.MoverANodo;

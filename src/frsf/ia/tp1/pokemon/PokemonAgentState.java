@@ -25,6 +25,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private int nodoActual;
 	private HashMap<Integer, Integer> mapaAgente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgente;
+	private HashMap<Integer, Integer> energiaEnemigosSucesores;
 	private int energiaInicial;
 	private int energia;
 	private int energiaEnemigo;
@@ -32,6 +33,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private int escudo;
 	private boolean escapo;
 	private int cantidadPokemonsAdversarios;
+	private int cantidadMovimientosTotales;
 	
 	public PokemonAgentState() {
 		
@@ -48,6 +50,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.nodoActual = Const.nodoInicialAgente;
 		this.mapaAgente = cargarMapaAgente();
 		this.mapaSucesoresAgente = cargarMapaSucesoresAgente();
+		this.energiaEnemigosSucesores = new HashMap<Integer, Integer>();
 		this.energiaInicial = Const.energiaInicialAgente;
 		this.energia = energiaInicial;
 		this.energiaEnemigo = 0; //VER
@@ -55,6 +58,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.escudo = 0;
 		this.escapo = false;
 		this.cantidadPokemonsAdversarios = Const.cantidadEnemigos;
+		this.cantidadMovimientosTotales = 0;
 	}
 	
 	public boolean estaVivo() {
@@ -78,15 +82,21 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		}
 	}
 	
-	public boolean puedeMoverse() {
+	public boolean puedeMoverse(Integer nodoAlQueSeMueve) {
 		
-		boolean puedeMoverse = false;
+		if(this.escapo) return true;
 		
-		if(this.mapaAgente.get(nodoActual) == 0 || this.escapo) {
-			puedeMoverse = true;
+		if(this.mapaAgente.get(nodoActual) == 0) {
+			
+			if((this.mapaAgente.get(nodoAlQueSeMueve) == 1 || this.mapaAgente.get(nodoAlQueSeMueve) == 3) && 
+				this.energiaEnemigosSucesores.getOrDefault(nodoAlQueSeMueve, 0) > this.energia) {
+					return false;
+			}
+			
+			return true;
 		}
 		
-		return puedeMoverse;
+		return false;
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAgente() {
@@ -189,7 +199,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		if (getClass() != obj.getClass())
 			return false;
 		PokemonAgentState other = (PokemonAgentState) obj;
-		return cantidadPokemonsAdversarios == other.cantidadPokemonsAdversarios && energia == other.energia
+		return cantidadPokemonsAdversarios == other.cantidadPokemonsAdversarios
 				&& energiaEnemigo == other.energiaEnemigo && energiaInicial == other.energiaInicial
 				&& escapo == other.escapo && escudo == other.escudo && Objects.equals(mapaAgente, other.mapaAgente)
 				&& Objects.equals(mapaSucesoresAgente, other.mapaSucesoresAgente) && nodoActual == other.nodoActual
@@ -205,13 +215,15 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.nodoActual,
 												(HashMap<Integer, Integer>) this.mapaAgente.clone(),
 												(HashMap<Integer, ArrayList<Integer>>) this.mapaSucesoresAgente.clone(),
+												(HashMap<Integer, Integer>) this.energiaEnemigosSucesores.clone(),
 												this.energiaInicial,
 												this.energia, 
 												this.energiaEnemigo, 
 												this.turnosRestantesParaUtilizarAtaquesEspeciales.stream().collect(Collectors.toList()), 
 												this.escudo, 
 												this.escapo, 
-												this.cantidadPokemonsAdversarios);
+												this.cantidadPokemonsAdversarios,
+												0);
 		
 		return newState;
 	}
@@ -232,6 +244,11 @@ public class PokemonAgentState extends SearchBasedAgentState {
 			this.mapaAgente.put(nodo, percepcion.getContenidoNodosSucesores().get(nodo));
 		}
 		
+		this.energiaEnemigosSucesores.clear();
+		for (Integer nodo : percepcion.getEnergiaEnemigosSucesores().keySet()) {
+			this.energiaEnemigosSucesores.put(nodo, percepcion.getEnergiaEnemigosSucesores().get(nodo));
+		}
+		
 		if (percepcion.isPuedeUsarSatelite()) {
 			this.mapaAgente = (HashMap<Integer, Integer>) percepcion.getMapaPorSatelite().clone();
 		}
@@ -245,6 +262,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		estadoPokemon += "Nodo actual: "+this.nodoActual+". Energia: "+this.energia+".\n";
 		estadoPokemon += "Energia enemigo: "+this.energiaEnemigo+". Escudo: "+this.escudo+". Escapo: "+this.escapo+"\n";
 		estadoPokemon += "Ataques especiales: "+this.turnosRestantesParaUtilizarAtaquesEspeciales+". Cant enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
+		estadoPokemon += "Contenido nodo actual: "+this.mapaAgente.get(this.nodoActual)+"\n";
 
 		return estadoPokemon;
 	}

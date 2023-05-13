@@ -44,6 +44,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		this.listaEnemigos = cargarListaEnemigos();
 		this.jefeFinal = cargarEnemigoFinal();
 		this.turnosRestantesParaUtilizarSatelite = Const.cantidadTurnosParaUtilizarSatelite;
+		
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAmbiente() {

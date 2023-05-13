@@ -25,20 +25,13 @@ public class MoverANodo extends SearchAction {
 		
 		int nodoActual = pokemonState.getNodoActual();
 		
-		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) 
-				&& pokemonState.puedeMoverse()) {
+		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) && pokemonState.puedeMoverse(this.nodo)) {
 			
-			//System.out.println(" ------------ Mover a nodo --------------");
-			//System.out.println("Mover a nodo - Nodo actual: " + nodoActual);
+//			System.out.println("Estado al mover: " + pokemonState);
 			
 			pokemonState.setNodoActual(this.nodo);
 			pokemonState.setEscapo(false);
 			pokemonState.setEscudo(0);
-			
-			//System.out.println("Mover a nodo - Nodo al que se movio: " + this.nodo);
-			//System.out.println("Mover a nodo - Mapa agente: " + pokemonState.getMapaAgente());
-			
-			
 			
 			return pokemonState;
 		}
@@ -62,8 +55,10 @@ public class MoverANodo extends SearchAction {
 		int nodoActualAgente = pokemonEnvironmentState.getPosicionAgente();
 		
 		if (pokemonState.estaVivo() && pokemonEnvironmentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
-				&& pokemonState.puedeMoverse()) {
+				&& pokemonState.puedeMoverse(this.nodo)) {
 			pokemonEnvironmentState.setPosicionAgente(this.nodo);
+			
+//			System.out.println("Estado al mover: " + pokemonState);
 			
 			this.avanzarTurno(pokemonState, pokemonEnvironmentState);			
 			Const.imprimirMapaActual("mover a nodo", pokemonEnvironmentState.getMapaAmbiente(), this.nodo);
@@ -80,6 +75,9 @@ public class MoverANodo extends SearchAction {
 		pokemonState.setNodoActual(this.nodo);
 		pokemonState.setEscapo(false);
 		pokemonState.setEscudo(0);
+		
+		// Actualiza cantidad de movimientos realizados
+		pokemonState.setCantidadMovimientosTotales(pokemonState.getCantidadMovimientosTotales()+1);
 		
 		// Actualizar Pokeparadas
 		for (Pokeparada pokeparada: pokemonEnviromentState.getListaPokeparadas()) {
@@ -101,6 +99,7 @@ public class MoverANodo extends SearchAction {
 		} else {
 			pokemonEnviromentState.setTurnosRestantesParaUtilizarSatelite(pokemonEnviromentState.getTurnosRestantesParaUtilizarSatelite() - 1);
 		}
+		
 	}
 
 }
