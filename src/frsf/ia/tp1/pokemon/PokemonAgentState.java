@@ -245,7 +245,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		String estadoPokemon = "----- ESTADO POKEMON ------\n";
 		estadoPokemon += "Nodo actual: "+this.nodoActual+". Energia: "+this.energia+".\n";
 		estadoPokemon += "Energia enemigo: "+this.energiaEnemigo+". Escudo: "+this.escudo+". Escapo: "+this.escapo+"\n";
-		estadoPokemon += "Ataques especiales: "+this.turnosRestantesParaUtilizarAtaquesEspeciales+". Cantidad de enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
+		estadoPokemon += "Ataques especiales: "+this.turnosRestantesParaUtilizarAtaquesEspeciales+". Cant enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
 
 		return estadoPokemon;
 	}

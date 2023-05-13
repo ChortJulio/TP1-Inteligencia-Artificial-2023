@@ -97,7 +97,8 @@ public class Const {
 	
 	public static void imprimirMapaActual(String accionEjecutada, LinkedHashMap<Integer, Integer> m, int nodoActualAgente) {
 		
-		//m.put(nodoActualAgente, 4); //VER
+		Integer valorReemplazado = m.get(nodoActualAgente);
+		m.replace(nodoActualAgente, 4); //VER
 		
 		String mapaActual = "+-----------------------------------------------+\n";
 		mapaActual += "|        "+m.get(11)+"  ------ "+m.get(12)+"  ---- "+m.get(13)+"  -------- "+m.get(14)+"  --- "+m.get(15)+" |\n";
@@ -115,8 +116,25 @@ public class Const {
 		mapaActual += "|    "+m.get(1)+"                                          |\n";		
 		mapaActual += "+-----------------------------------------------+\n";
 		
+		m.replace(nodoActualAgente, valorReemplazado);
+		
 		System.out.println("Acción ejecutada: "+accionEjecutada.toUpperCase());
 		System.out.println(mapaActual);
+	}
+
+	public static void imprimirCartelVictoria() {
+		
+		String cartelVictoria = "+-----------------------------------------------+\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "|                                               |\n";
+		cartelVictoria += "+-----------------------------------------------+\n";
+		
+		System.out.println(cartelVictoria);
 	}
 
 }
