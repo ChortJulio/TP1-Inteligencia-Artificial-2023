@@ -19,6 +19,8 @@ public class Pelear extends SearchAction {
 		
 		int nodoActual = pokemonState.getNodoActual();
 		
+		int energiaEnemigo;
+		
 		if ( pokemonState.estaVivo() && 
 			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
 			 !pokemonState.escapo()) {
@@ -26,8 +28,12 @@ public class Pelear extends SearchAction {
 			//System.out.println("--------- Pelear --------- ");
 			//System.out.println(pokemonState);
 			
-			if (pokemonState.getEscudo() < pokemonState.getEnergiaEnemigo()) {
-				pokemonState.setEnergia(pokemonState.getEnergia() - (pokemonState.getEnergiaEnemigo() - pokemonState.getEscudo()));
+		
+			if (pokemonState.getMapaAgente().get(nodoActual) == 3) energiaEnemigo = pokemonState.getEnergiaEnemigoFinal();
+			else energiaEnemigo = pokemonState.getEnergiaEnemigo();
+			
+			if (pokemonState.getEscudo() < energiaEnemigo) {
+				pokemonState.setEnergia(pokemonState.getEnergia() - (energiaEnemigo - pokemonState.getEscudo()));
 			}
 			
 			pokemonState.setEscudo(0);

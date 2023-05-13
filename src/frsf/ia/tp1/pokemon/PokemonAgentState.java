@@ -34,6 +34,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private boolean escapo;
 	private int cantidadPokemonsAdversarios;
 	private int cantidadMovimientosTotales;
+	private int energiaEnemigoFinal;
 	
 	public PokemonAgentState() {
 		
@@ -48,6 +49,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	public void initState() {
 		
 		this.nodoActual = Const.nodoInicialAgente;
+		this.energiaEnemigoFinal = Const.vidaEnemigoFinal;
 		this.mapaAgente = cargarMapaAgente();
 		this.mapaSucesoresAgente = cargarMapaSucesoresAgente();
 		this.energiaEnemigosSucesores = new HashMap<Integer, Integer>();
@@ -213,7 +215,8 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.escudo, 
 												this.escapo, 
 												this.cantidadPokemonsAdversarios,
-												0);
+												0, 
+												this.energiaEnemigoFinal);
 		
 		return newState;
 	}
