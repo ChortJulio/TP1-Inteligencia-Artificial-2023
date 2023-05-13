@@ -54,7 +54,7 @@ public class MoverANodo extends SearchAction {
 	@Override
 	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 		
-		System.out.println("Mover a nodo - Este es el metodo execute que cambia el ambiente");
+		//System.out.println("Mover a nodo - Este es el metodo execute que cambia el ambiente");
 		
 		PokemonEnvironmentState pokemonEnvironmentState = (PokemonEnvironmentState) est;
 		PokemonAgentState pokemonState = ((PokemonAgentState) ast);

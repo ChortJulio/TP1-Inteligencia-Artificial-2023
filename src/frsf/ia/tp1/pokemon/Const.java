@@ -1,6 +1,7 @@
 package frsf.ia.tp1.pokemon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
@@ -95,28 +96,30 @@ public class Const {
 		return (randomGenerator.nextInt(max - min + 1) + min);
 	}
 	
-	public static void imprimirMapaActual(String accionEjecutada, LinkedHashMap<Integer, Integer> m, int nodoActualAgente) {
+	public static void imprimirMapaActual(String accionEjecutada, LinkedHashMap<Integer, Integer> mapa, int nodoActualAgente) {
+		HashMap<Integer, String> caracteres = new LinkedHashMap<>();
 		
-		Integer valorReemplazado = m.get(nodoActualAgente);
-		m.replace(nodoActualAgente, 4); //VER
+		for (Integer i : mapa.keySet()) {
+			caracteres.put(i, mapa.get(i).toString());
+		}
+		
+		caracteres.replace(nodoActualAgente, "X"); //VER
 		
 		String mapaActual = "+-----------------------------------------------+\n";
-		mapaActual += "|        "+m.get(11)+"  ------ "+m.get(12)+"  ---- "+m.get(13)+"  -------- "+m.get(14)+"  --- "+m.get(15)+" |\n";
+		mapaActual += "|        "+caracteres.get(11)+"  ------ "+caracteres.get(12)+"  ---- "+caracteres.get(13)+"  -------- "+caracteres.get(14)+"  --- "+caracteres.get(15)+" |\n";
 		mapaActual += "|        | \\             / |  \\         \\       |\n";
-		mapaActual += "|"+m.get(10)+"       |   "+m.get(28)+"  ----- "+m.get(27)+"   /    \\         \\      |\n";
-		mapaActual += "| \\     |  /          |  /      \\        "+m.get(16)+"      |\n";
-		mapaActual += "|  "+m.get(8)+" --- "+m.get(9)+"            | /        \\        \\     |\n";
+		mapaActual += "|"+caracteres.get(10)+"       |   "+caracteres.get(28)+"  ----- "+caracteres.get(27)+"   /    \\         \\      |\n";
+		mapaActual += "| \\     |  /          |  /      \\        "+caracteres.get(16)+"      |\n";
+		mapaActual += "|  "+caracteres.get(8)+" --- "+caracteres.get(9)+"            | /        \\        \\     |\n";
 		mapaActual += "| /      |            |/          \\        \\    |\n";
-		mapaActual += "|"+m.get(5)+" - "+m.get(6)+" - "+m.get(7)+" --- "+m.get(29)+"  -- "+m.get(26)+"       "+m.get(23)+"  -- "+m.get(22)+"  ----- "+m.get(17)+"   |\n";
+		mapaActual += "|"+caracteres.get(5)+" - "+caracteres.get(6)+" - "+caracteres.get(7)+" --- "+caracteres.get(29)+"  -- "+caracteres.get(26)+"       "+caracteres.get(23)+"  -- "+caracteres.get(22)+"  ----- "+caracteres.get(17)+"   |\n";
 		mapaActual += "|  \\    /             |      |      |       |   |\n";
-		mapaActual += "|    "+m.get(4)+" --- "+m.get(3)+"          |      |      "+m.get(21)+"       "+m.get(18)+"   |\n";
+		mapaActual += "|    "+caracteres.get(4)+" --- "+caracteres.get(3)+"          |      |      "+caracteres.get(21)+"       "+caracteres.get(18)+"   |\n";
 		mapaActual += "|    |    /           |      |      |       |   |\n";
-		mapaActual += "|    |   "+m.get(2)+"            "+m.get(25)+"  --- "+m.get(24)+"  --- "+m.get(20)+"  ---- "+m.get(19)+"   |\n";
+		mapaActual += "|    |   "+caracteres.get(2)+"            "+caracteres.get(25)+"  --- "+caracteres.get(24)+"  --- "+caracteres.get(20)+"  ---- "+caracteres.get(19)+"   |\n";
 		mapaActual += "|    | /                                        |\n";
-		mapaActual += "|    "+m.get(1)+"                                          |\n";		
+		mapaActual += "|    "+caracteres.get(1)+"                                          |\n";		
 		mapaActual += "+-----------------------------------------------+\n";
-		
-		m.replace(nodoActualAgente, valorReemplazado);
 		
 		System.out.println("Acción ejecutada: "+accionEjecutada.toUpperCase());
 		System.out.println(mapaActual);

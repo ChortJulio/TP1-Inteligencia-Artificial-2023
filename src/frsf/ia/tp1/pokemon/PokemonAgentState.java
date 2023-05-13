@@ -20,7 +20,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 public class PokemonAgentState extends SearchBasedAgentState {
 	
 	private int nodoActual;

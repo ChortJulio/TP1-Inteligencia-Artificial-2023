@@ -12,7 +12,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class PokemonPerception extends Perception {
     
 	private int posicionAgente;

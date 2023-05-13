@@ -18,7 +18,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class PokemonEnvironmentState extends EnvironmentState{
 
 	private int posicionAgente;

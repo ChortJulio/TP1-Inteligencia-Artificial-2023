@@ -8,7 +8,6 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.PokemonAgentState;
 import frsf.ia.tp1.pokemon.PokemonEnvironmentState;
-import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import lombok.ToString;
 
 @ToString
@@ -24,8 +23,8 @@ public class Pelear extends SearchAction {
 			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
 			 !pokemonState.escapo()) {
 			
-			System.out.println("--------- Pelear --------- ");
-			System.out.println(pokemonState);
+			//System.out.println("--------- Pelear --------- ");
+			//System.out.println(pokemonState);
 			
 			if (pokemonState.getEscudo() < pokemonState.getEnergiaEnemigo()) {
 				pokemonState.setEnergia(pokemonState.getEnergia() - (pokemonState.getEnergiaEnemigo() - pokemonState.getEscudo()));
@@ -41,7 +40,6 @@ public class Pelear extends SearchAction {
 			return pokemonState;
 		}
 		
-		// TODO Auto-generated method stub
 		return null;
 	}
 

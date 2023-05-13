@@ -19,7 +19,7 @@ public class PokemonGoal extends GoalTest {
     		&& estadoPokemon.getNodoActual() == Const.nodoPosicionEnemigoFinal
     		&& estadoPokemon.getMapaAgente().get(estadoPokemon.getNodoActual())== 0) {
         	cumplioMetaFinal = true;
-            Const.imprimirCartelVictoria();
+            //Const.imprimirCartelVictoria();
         }
         
         return cumplioMetaFinal;
