@@ -222,7 +222,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.escudo, 
 												this.escapo, 
 												this.cantidadPokemonsAdversarios,
-												0, 
+												this.cantidadMovimientosTotales, 
 												this.energiaEnemigoFinal);
 		
 		return newState;

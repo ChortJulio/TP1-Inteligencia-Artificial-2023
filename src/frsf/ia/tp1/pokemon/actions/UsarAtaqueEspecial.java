@@ -32,7 +32,8 @@ public class UsarAtaqueEspecial extends SearchAction {
 		
 		if (pokemonState.estaVivo() &&
 			ataque.getTurnosRestantesParaUtilizar() == 0 &&
-			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3)) {
+			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
+			!pokemonState.escapo()) {
 			
 			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*ataque.getPorcentajeRecuperacionEnergia()));
 			
@@ -60,7 +61,8 @@ public class UsarAtaqueEspecial extends SearchAction {
 		
 		if (pokemonState.estaVivo() &&
 				ataque.getTurnosRestantesParaUtilizar() == 0 &&
-				(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3)){
+				(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3)&&
+				!pokemonState.escapo()) {
 			
 			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*ataque.getPorcentajeRecuperacionEnergia()));
 			
