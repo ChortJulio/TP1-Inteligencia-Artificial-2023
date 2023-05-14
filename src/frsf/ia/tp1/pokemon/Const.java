@@ -30,6 +30,9 @@ public class Const {
 	public static double porcentajeRecuperacionEnergiaAtaque0 = 0.2;
 	public static double porcentajeRecuperacionEnergiaAtaque1 = 0.3;
 	public static double porcentajeRecuperacionEnergiaAtaque2 = 0.5;
+	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial0 = 1.25;
+	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial1 = 1.75;
+	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2 = 2.2;
 	
 	public static int vidaEnemigoFinal = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
 	

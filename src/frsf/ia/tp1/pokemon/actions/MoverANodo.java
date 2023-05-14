@@ -10,6 +10,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.Const;
 import frsf.ia.tp1.pokemon.PokemonAgentState;
 import frsf.ia.tp1.pokemon.PokemonEnvironmentState;
+import frsf.ia.tp1.pokemon.ataquesEspeciales.AtaqueEspecial;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import frsf.ia.tp1.pokemon.pokeparadas.Pokeparada;
 import lombok.ToString;
@@ -92,6 +93,11 @@ public class MoverANodo extends SearchAction {
 		pokemonState.setNodoActual(this.nodo);
 		pokemonState.setEscapo(false);
 		pokemonState.setEscudo(0);
+		
+		// Actualizar ataques especiales
+		for(AtaqueEspecial ae : pokemonState.getAtaquesEspeciales()) {
+			ae.restarUnTurnoParaUtilizar();
+		}
 		
 		// Actualiza cantidad de movimientos realizados
 		pokemonState.setCantidadMovimientosTotales(pokemonState.getCantidadMovimientosTotales()+1);

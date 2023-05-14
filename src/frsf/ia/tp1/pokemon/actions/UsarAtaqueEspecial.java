@@ -1,5 +1,7 @@
 package frsf.ia.tp1.pokemon.actions;
 
+import java.util.stream.Collectors;
+
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -7,15 +9,18 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.Const;
 import frsf.ia.tp1.pokemon.PokemonAgentState;
 import frsf.ia.tp1.pokemon.PokemonEnvironmentState;
+import frsf.ia.tp1.pokemon.ataquesEspeciales.AtaqueEspecial;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-@AllArgsConstructor
 @ToString
 public class UsarAtaqueEspecial extends SearchAction {
 	
 	private int numeroAtaque;
-	private double porcentajeRecuperacionEnergia;
+	
+	public UsarAtaqueEspecial(int numeroAtaque) {
+		this.numeroAtaque = numeroAtaque;
+	}
 
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
@@ -23,13 +28,15 @@ public class UsarAtaqueEspecial extends SearchAction {
 		
 		int nodoActual = pokemonState.getNodoActual();
 		
+		AtaqueEspecial ataque = pokemonState.getAtaquesEspeciales().get(numeroAtaque);
+		
 		if (pokemonState.estaVivo() &&
-			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().get(numeroAtaque) == 0 &&
+			ataque.getTurnosRestantesParaUtilizar() == 0 &&
 			pokemonState.getMapaAgente().get(nodoActual) == 1) {
 			
-			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*porcentajeRecuperacionEnergia));
+			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*ataque.getPorcentajeRecuperacionEnergia()));
 			
-			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().set(numeroAtaque, Const.cantidadTurnosParaUtilizarAtaque);
+			ataque.usarAtaque();
 			
 			return pokemonState;
 		}
@@ -49,13 +56,15 @@ public class UsarAtaqueEspecial extends SearchAction {
 		
 		int nodoActual = pokemonEnviromentState.getPosicionAgente();
 		
+		AtaqueEspecial ataque = pokemonState.getAtaquesEspeciales().get(numeroAtaque);
+		
 		if (pokemonState.estaVivo() &&
-			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().get(numeroAtaque) == 0 &&
+			ataque.getTurnosRestantesParaUtilizar() == 0 &&
 			pokemonState.getMapaAgente().get(nodoActual) == 1) {
 			
-			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*porcentajeRecuperacionEnergia));
+			pokemonState.setEscudo((int) Math.floor(pokemonState.getEscudo() + pokemonState.getEnergia()*ataque.getPorcentajeRecuperacionEnergia()));
 			
-			pokemonState.getTurnosRestantesParaUtilizarAtaquesEspeciales().set(numeroAtaque, Const.cantidadTurnosParaUtilizarAtaque);
+			ataque.usarAtaque();
 			
 			
 			return pokemonEnviromentState;
