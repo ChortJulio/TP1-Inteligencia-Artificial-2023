@@ -18,7 +18,7 @@ public class Const {
 	public static int cantidadNodos = 29;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
-	public static int vidaMaximoEnemigoFinal = 50;
+	public static int vidaMaximoEnemigoFinal = 45;
 	public static int vidaMinimoEnemigoFinal = 40;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
@@ -39,7 +39,7 @@ public class Const {
 	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2 = 2.2;
 	
 	public static int vidaEnemigoFinal = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
-	public static ArrayList<Integer> distanciaAEnemigoFinal = Const.calcularDistanciaAEnemigoFinal();
+	public static List<Integer> distanciaAEnemigoFinal = Const.calcularDistanciaAEnemigoFinal();
 	
 	public static int contenidoInicialNodo1 = 0;
 	public static int contenidoInicialNodo2 = 0;
@@ -71,41 +71,41 @@ public class Const {
 	public static int contenidoInicialNodo28 = 0;
 	public static int contenidoInicialNodo29 = 0;
 	
-	public static HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgenteInicial = Const.sucesores();
+	public static HashMap<Integer, List<Integer>> mapaSucesores = Const.sucesores();
 	
-	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
-	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
-	public static ArrayList<Integer> sucesoresNodo3 = new ArrayList<Integer>(List.of(2, 4));
-	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(1, 3, 5, 7));
-	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(4, 6, 9));
-	public static ArrayList<Integer> sucesoresNodo6 = new ArrayList<Integer>(List.of(5, 7));
-	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8, 29));
-	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9, 11, 28));
-	public static ArrayList<Integer> sucesoresNodo9 = new ArrayList<Integer>(List.of(5, 8, 10));
-	public static ArrayList<Integer> sucesoresNodo10 = new ArrayList<Integer>(List.of(9));
-	public static ArrayList<Integer> sucesoresNodo11 = new ArrayList<Integer>(List.of(8, 12, 28));
-	public static ArrayList<Integer> sucesoresNodo12 = new ArrayList<Integer>(List.of(11, 13));
-	public static ArrayList<Integer> sucesoresNodo13 = new ArrayList<Integer>(List.of(12, 14, 22, 26, 27));
-	public static ArrayList<Integer> sucesoresNodo14 = new ArrayList<Integer>(List.of(13, 15, 16));
-	public static ArrayList<Integer> sucesoresNodo15 = new ArrayList<Integer>(List.of(14));
-	public static ArrayList<Integer> sucesoresNodo16 = new ArrayList<Integer>(List.of(14, 17));
-	public static ArrayList<Integer> sucesoresNodo17 = new ArrayList<Integer>(List.of(16, 18, 22));
-	public static ArrayList<Integer> sucesoresNodo18 = new ArrayList<Integer>(List.of(17, 19));
-	public static ArrayList<Integer> sucesoresNodo19 = new ArrayList<Integer>(List.of(18, 20));
-	public static ArrayList<Integer> sucesoresNodo20 = new ArrayList<Integer>(List.of(19, 21, 24));
-	public static ArrayList<Integer> sucesoresNodo21 = new ArrayList<Integer>(List.of(20, 22));
-	public static ArrayList<Integer> sucesoresNodo22 = new ArrayList<Integer>(List.of(13, 17, 21, 23));
-	public static ArrayList<Integer> sucesoresNodo23 = new ArrayList<Integer>(List.of(22, 24));
-	public static ArrayList<Integer> sucesoresNodo24 = new ArrayList<Integer>(List.of(20, 23, 25));
-	public static ArrayList<Integer> sucesoresNodo25 = new ArrayList<Integer>(List.of(24, 26));
-	public static ArrayList<Integer> sucesoresNodo26 = new ArrayList<Integer>(List.of(13, 25, 27, 29));
-	public static ArrayList<Integer> sucesoresNodo27 = new ArrayList<Integer>(List.of(13, 26, 28));
-	public static ArrayList<Integer> sucesoresNodo28 = new ArrayList<Integer>(List.of(8, 11, 27));
-	public static ArrayList<Integer> sucesoresNodo29 = new ArrayList<Integer>(List.of(7, 26));
+	public static List<Integer> sucesoresNodo1 = List.of(2, 4);
+	public static List<Integer> sucesoresNodo2 = List.of(1, 3);
+	public static List<Integer> sucesoresNodo3 = List.of(2, 4);
+	public static List<Integer> sucesoresNodo4 = List.of(1, 3, 5, 7);
+	public static List<Integer> sucesoresNodo5 = List.of(4, 6, 9);
+	public static List<Integer> sucesoresNodo6 = List.of(5, 7);
+	public static List<Integer> sucesoresNodo7 = List.of(4, 6, 8, 29);
+	public static List<Integer> sucesoresNodo8 = List.of(7, 9, 11, 28);
+	public static List<Integer> sucesoresNodo9 = List.of(5, 8, 10);
+	public static List<Integer> sucesoresNodo10 = (List.of(9));
+	public static List<Integer> sucesoresNodo11 = (List.of(8, 12, 28));
+	public static List<Integer> sucesoresNodo12 = (List.of(11, 13));
+	public static List<Integer> sucesoresNodo13 = (List.of(12, 14, 22, 26, 27));
+	public static List<Integer> sucesoresNodo14 = (List.of(13, 15, 16));
+	public static List<Integer> sucesoresNodo15 = (List.of(14));
+	public static List<Integer> sucesoresNodo16 = (List.of(14, 17));
+	public static List<Integer> sucesoresNodo17 = (List.of(16, 18, 22));
+	public static List<Integer> sucesoresNodo18 = (List.of(17, 19));
+	public static List<Integer> sucesoresNodo19 = (List.of(18, 20));
+	public static List<Integer> sucesoresNodo20 = (List.of(19, 21, 24));
+	public static List<Integer> sucesoresNodo21 = (List.of(20, 22));
+	public static List<Integer> sucesoresNodo22 = (List.of(13, 17, 21, 23));
+	public static List<Integer> sucesoresNodo23 = (List.of(22, 24));
+	public static List<Integer> sucesoresNodo24 = (List.of(20, 23, 25));
+	public static List<Integer> sucesoresNodo25 = (List.of(24, 26));
+	public static List<Integer> sucesoresNodo26 = (List.of(13, 25, 27, 29));
+	public static List<Integer> sucesoresNodo27 = (List.of(13, 26, 28));
+	public static List<Integer> sucesoresNodo28 = (List.of(8, 11, 27));
+	public static List<Integer> sucesoresNodo29 = (List.of(7, 26));
 	
 	
-//	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
-//	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
+//	public static List<Integer> sucesoresNodo1 = new List<Integer>(List.of(2, 4));
+//	public static List<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
 //	public static ArrayList<Integer> sucesoresNodo3 = new ArrayList<Integer>(List.of(2, 4));
 //	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(1, 3, 5, 7));
 //	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(4, 6, 9));
@@ -187,8 +187,8 @@ public class Const {
 		System.out.println(cartelVictoria);
 	}
 	
-	public static HashMap<Integer, ArrayList<Integer>> sucesores() {
-		HashMap<Integer, ArrayList<Integer>> mapaSucesores = new HashMap<>();
+	public static HashMap<Integer, List<Integer>> sucesores() {
+		HashMap<Integer, List<Integer>> mapaSucesores = new HashMap<>();
 		
 		mapaSucesores.put(1, Const.sucesoresNodo1);
 		mapaSucesores.put(2, Const.sucesoresNodo2);

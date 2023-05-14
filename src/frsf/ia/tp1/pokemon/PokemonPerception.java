@@ -53,6 +53,7 @@ public class PokemonPerception extends Perception {
 		 *	estado que figura en el mapa 
 		 */
 		for (Integer nodo : environmentState.getMapaSucesoresAmbiente().get(environmentState.getPosicionAgente())) {
+			System.out.println("PokemonPerception -------- Sucesor: " + nodo);
 			contenidoNodosSucesores.put(nodo, environmentState.getMapaAmbiente().get(nodo));
 		}
 		

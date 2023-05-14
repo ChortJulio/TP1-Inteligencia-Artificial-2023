@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
@@ -22,7 +23,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 
 	private int posicionAgente;
 	private LinkedHashMap<Integer, Integer> mapaAmbiente;
-	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbiente;
+	private HashMap<Integer, List<Integer>> mapaSucesoresAmbiente;
 	private List<Enemigo> listaEnemigos;
 	private EnemigoFinal jefeFinal;
 	private List<Pokeparada> listaPokeparadas;
@@ -39,7 +40,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		
 		this.posicionAgente = 1;
 		this.mapaAmbiente = cargarMapaAmbiente();
-		this.mapaSucesoresAmbiente = cargarMapaSucesoresAmbiente();
+		this.mapaSucesoresAmbiente = Const.sucesores();
 		this.jefeFinal = cargarEnemigoFinal();
 		this.listaPokeparadas = cargarListaPokeparadas();
 		this.listaEnemigos = cargarListaEnemigos();
@@ -55,43 +56,6 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		}
 		
 		return mapaAmbienteInicial;
-	}
-	
-	private HashMap<Integer, ArrayList<Integer>> cargarMapaSucesoresAmbiente() {
-		
-		HashMap<Integer, ArrayList<Integer>> mapaSucesoresAmbienteInicial = new HashMap<>();
-		
-		mapaSucesoresAmbienteInicial.put(1, Const.sucesoresNodo1);
-		mapaSucesoresAmbienteInicial.put(2, Const.sucesoresNodo2);
-		mapaSucesoresAmbienteInicial.put(3, Const.sucesoresNodo3);
-		mapaSucesoresAmbienteInicial.put(4, Const.sucesoresNodo4);
-		mapaSucesoresAmbienteInicial.put(5, Const.sucesoresNodo5);
-		mapaSucesoresAmbienteInicial.put(6, Const.sucesoresNodo6);
-		mapaSucesoresAmbienteInicial.put(7, Const.sucesoresNodo7);
-		mapaSucesoresAmbienteInicial.put(8, Const.sucesoresNodo8);
-		mapaSucesoresAmbienteInicial.put(9, Const.sucesoresNodo9);
-		mapaSucesoresAmbienteInicial.put(10, Const.sucesoresNodo10);
-		mapaSucesoresAmbienteInicial.put(11, Const.sucesoresNodo11);
-		mapaSucesoresAmbienteInicial.put(12, Const.sucesoresNodo12);
-		mapaSucesoresAmbienteInicial.put(13, Const.sucesoresNodo13);
-		mapaSucesoresAmbienteInicial.put(14, Const.sucesoresNodo14);
-		mapaSucesoresAmbienteInicial.put(15, Const.sucesoresNodo15);
-		mapaSucesoresAmbienteInicial.put(16, Const.sucesoresNodo16);
-		mapaSucesoresAmbienteInicial.put(17, Const.sucesoresNodo17);
-		mapaSucesoresAmbienteInicial.put(18, Const.sucesoresNodo18);
-		mapaSucesoresAmbienteInicial.put(19, Const.sucesoresNodo19);
-		mapaSucesoresAmbienteInicial.put(20, Const.sucesoresNodo20);
-		mapaSucesoresAmbienteInicial.put(21, Const.sucesoresNodo21);
-		mapaSucesoresAmbienteInicial.put(22, Const.sucesoresNodo22);
-		mapaSucesoresAmbienteInicial.put(23, Const.sucesoresNodo23);
-		mapaSucesoresAmbienteInicial.put(24, Const.sucesoresNodo24);
-		mapaSucesoresAmbienteInicial.put(25, Const.sucesoresNodo25);
-		mapaSucesoresAmbienteInicial.put(26, Const.sucesoresNodo26);
-		mapaSucesoresAmbienteInicial.put(27, Const.sucesoresNodo27);
-		mapaSucesoresAmbienteInicial.put(28, Const.sucesoresNodo28);
-		mapaSucesoresAmbienteInicial.put(29, Const.sucesoresNodo29);
-		
-		return mapaSucesoresAmbienteInicial;
 	}
 	
 	private EnemigoFinal cargarEnemigoFinal() {
@@ -160,7 +124,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	}
 	
 	private int nodoAlQueSeMueveElEnemigo(Enemigo e) {
-		List<Integer> listaPosiblesNodos = this.mapaSucesoresAmbiente.get(e.getNodo());
+		List<Integer> listaPosiblesNodos = this.mapaSucesoresAmbiente.get(e.getNodo()).stream().collect(Collectors.toList());
 		
 		Random randomGenerator = new Random(Const.seed);
 		

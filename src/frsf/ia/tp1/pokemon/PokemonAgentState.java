@@ -25,7 +25,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	
 	private int nodoActual;
 	private HashMap<Integer, Integer> mapaAgente;
-	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgente;
+	private HashMap<Integer, List<Integer>> mapaSucesoresAgente;
 	private HashMap<Integer, Integer> energiaEnemigosSucesores;
 	private HashMap<Integer, Integer> visitasAlNodo;
 	private int energiaInicial;
@@ -53,7 +53,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.nodoActual = Const.nodoInicialAgente;
 		this.energiaEnemigoFinal = Const.vidaEnemigoFinal;
 		this.mapaAgente = cargarMapaAgente();
-		this.mapaSucesoresAgente = cargarMapaSucesoresAgente();
+		this.mapaSucesoresAgente = Const.sucesores();
 		this.energiaEnemigosSucesores = new HashMap<Integer, Integer>();
 		this.visitasAlNodo = cargarVisitasAlNodo();
 		this.energiaInicial = Const.energiaInicialAgente;
@@ -129,43 +129,6 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		return mapaAgenteInicial;
 	}
 	
-	private HashMap<Integer, ArrayList<Integer>> cargarMapaSucesoresAgente() {
-		
-		HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgenteInicial = new HashMap<>();
-		
-		mapaSucesoresAgenteInicial.put(1, Const.sucesoresNodo1);
-		mapaSucesoresAgenteInicial.put(2, Const.sucesoresNodo2);
-		mapaSucesoresAgenteInicial.put(3, Const.sucesoresNodo3);
-		mapaSucesoresAgenteInicial.put(4, Const.sucesoresNodo4);
-		mapaSucesoresAgenteInicial.put(5, Const.sucesoresNodo5);
-		mapaSucesoresAgenteInicial.put(6, Const.sucesoresNodo6);
-		mapaSucesoresAgenteInicial.put(7, Const.sucesoresNodo7);
-		mapaSucesoresAgenteInicial.put(8, Const.sucesoresNodo8);
-		mapaSucesoresAgenteInicial.put(9, Const.sucesoresNodo9);
-		mapaSucesoresAgenteInicial.put(10, Const.sucesoresNodo10);
-		mapaSucesoresAgenteInicial.put(11, Const.sucesoresNodo11);
-		mapaSucesoresAgenteInicial.put(12, Const.sucesoresNodo12);
-		mapaSucesoresAgenteInicial.put(13, Const.sucesoresNodo13);
-		mapaSucesoresAgenteInicial.put(14, Const.sucesoresNodo14);
-		mapaSucesoresAgenteInicial.put(15, Const.sucesoresNodo15);
-		mapaSucesoresAgenteInicial.put(16, Const.sucesoresNodo16);
-		mapaSucesoresAgenteInicial.put(17, Const.sucesoresNodo17);
-		mapaSucesoresAgenteInicial.put(18, Const.sucesoresNodo18);
-		mapaSucesoresAgenteInicial.put(19, Const.sucesoresNodo19);
-		mapaSucesoresAgenteInicial.put(20, Const.sucesoresNodo20);
-		mapaSucesoresAgenteInicial.put(21, Const.sucesoresNodo21);
-		mapaSucesoresAgenteInicial.put(22, Const.sucesoresNodo22);
-		mapaSucesoresAgenteInicial.put(23, Const.sucesoresNodo23);
-		mapaSucesoresAgenteInicial.put(24, Const.sucesoresNodo24);
-		mapaSucesoresAgenteInicial.put(25, Const.sucesoresNodo25);
-		mapaSucesoresAgenteInicial.put(26, Const.sucesoresNodo26);
-		mapaSucesoresAgenteInicial.put(27, Const.sucesoresNodo27);
-		mapaSucesoresAgenteInicial.put(28, Const.sucesoresNodo28);
-		mapaSucesoresAgenteInicial.put(29, Const.sucesoresNodo29);
-		
-		return mapaSucesoresAgenteInicial;
-	}
-	
 	private HashMap<Integer, Integer> cargarVisitasAlNodo() {
 		HashMap<Integer, Integer> visitasAlNodo = new HashMap<>();
 		
@@ -212,7 +175,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		PokemonAgentState newState = new PokemonAgentState(
 												this.nodoActual,
 												(HashMap<Integer, Integer>) this.mapaAgente.clone(),
-												(HashMap<Integer, ArrayList<Integer>>) this.mapaSucesoresAgente.clone(),
+												(HashMap<Integer, List<Integer>>) this.mapaSucesoresAgente.clone(),
 												(HashMap<Integer, Integer>) this.energiaEnemigosSucesores.clone(),
 												(HashMap<Integer, Integer>) this.visitasAlNodo.clone(),
 												this.energiaInicial,
