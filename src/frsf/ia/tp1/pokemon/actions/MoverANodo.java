@@ -57,7 +57,8 @@ public class MoverANodo extends SearchAction {
 		
 		int nodoActualAgente = pokemonEnvironmentState.getPosicionAgente();
 		
-		if (pokemonState.estaVivo() && pokemonEnvironmentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
+		if (pokemonState.estaVivo() 
+				&& pokemonEnvironmentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
 				&& pokemonState.puedeMoverse(this.nodo)) {
 			pokemonEnvironmentState.setPosicionAgente(this.nodo);
 			

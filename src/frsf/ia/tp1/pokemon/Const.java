@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class Const {
@@ -37,6 +38,7 @@ public class Const {
 	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2 = 2.2;
 	
 	public static int vidaEnemigoFinal = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
+	public static HashMap<Integer, Integer> distanciaANodoFinal = Const.calcularDistanciaANodoFinal();
 	
 	public static int contenidoInicialNodo1 = 0;
 	public static int contenidoInicialNodo2 = 0;
@@ -68,6 +70,8 @@ public class Const {
 	public static int contenidoInicialNodo28 = 0;
 	public static int contenidoInicialNodo29 = 0;
 	
+	public static HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgenteInicial = Const.sucesores();
+	
 	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
 	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
 	public static ArrayList<Integer> sucesoresNodo3 = new ArrayList<Integer>(List.of(2, 4));
@@ -97,6 +101,7 @@ public class Const {
 	public static ArrayList<Integer> sucesoresNodo27 = new ArrayList<Integer>(List.of(13, 26, 28));
 	public static ArrayList<Integer> sucesoresNodo28 = new ArrayList<Integer>(List.of(8, 11, 27));
 	public static ArrayList<Integer> sucesoresNodo29 = new ArrayList<Integer>(List.of(7, 26));
+	
 	
 //	public static ArrayList<Integer> sucesoresNodo1 = new ArrayList<Integer>(List.of(2, 4));
 //	public static ArrayList<Integer> sucesoresNodo2 = new ArrayList<Integer>(List.of(1, 3));
@@ -174,6 +179,76 @@ public class Const {
 		cartelVictoria += "+-----------------------------------------------+\n";
 		
 		System.out.println(cartelVictoria);
+	}
+	
+	public static HashMap<Integer, ArrayList<Integer>> sucesores() {
+		HashMap<Integer, ArrayList<Integer>> mapaSucesores = new HashMap<>();
+		
+		mapaSucesores.put(1, Const.sucesoresNodo1);
+		mapaSucesores.put(2, Const.sucesoresNodo2);
+		mapaSucesores.put(3, Const.sucesoresNodo3);
+		mapaSucesores.put(4, Const.sucesoresNodo4);
+		mapaSucesores.put(5, Const.sucesoresNodo5);
+		mapaSucesores.put(6, Const.sucesoresNodo6);
+		mapaSucesores.put(7, Const.sucesoresNodo7);
+		mapaSucesores.put(8, Const.sucesoresNodo8);
+		mapaSucesores.put(9, Const.sucesoresNodo9);
+		mapaSucesores.put(10, Const.sucesoresNodo10);
+		mapaSucesores.put(11, Const.sucesoresNodo11);
+		mapaSucesores.put(12, Const.sucesoresNodo12);
+		mapaSucesores.put(13, Const.sucesoresNodo13);
+		mapaSucesores.put(14, Const.sucesoresNodo14);
+		mapaSucesores.put(15, Const.sucesoresNodo15);
+		mapaSucesores.put(16, Const.sucesoresNodo16);
+		mapaSucesores.put(17, Const.sucesoresNodo17);
+		mapaSucesores.put(18, Const.sucesoresNodo18);
+		mapaSucesores.put(19, Const.sucesoresNodo19);
+		mapaSucesores.put(20, Const.sucesoresNodo20);
+		mapaSucesores.put(21, Const.sucesoresNodo21);
+		mapaSucesores.put(22, Const.sucesoresNodo22);
+		mapaSucesores.put(23, Const.sucesoresNodo23);
+		mapaSucesores.put(24, Const.sucesoresNodo24);
+		mapaSucesores.put(25, Const.sucesoresNodo25);
+		mapaSucesores.put(26, Const.sucesoresNodo26);
+		mapaSucesores.put(27, Const.sucesoresNodo27);
+		mapaSucesores.put(28, Const.sucesoresNodo28);
+		mapaSucesores.put(29, Const.sucesoresNodo29);
+		
+		return mapaSucesores;
+	}
+	
+	public static HashMap<Integer, Integer> calcularDistanciaANodoFinal() {
+		List<Integer> nodos = new ArrayList<>();
+		HashMap<Integer, Integer> distancias = new HashMap<>();
+		PriorityQueue<Integer> cola = new PriorityQueue<>((e1, e2) -> distancias.get(e1).compareTo(e2));
+		
+		Integer nodoOrigen = nodoPosicionEnemigoFinal;
+		Integer nodoDestino = nodoInicialAgente;
+		
+		for (int i=1; i<=cantidadNodos; i++) {
+			nodos.add(i);
+			distancias.put(i, Integer.MAX_VALUE);
+		}
+		
+//		distancias.put(nodoOrigen, 0);
+//		cola.offer(nodoOrigen);
+//		
+//		System.out.println(cola);
+//		
+//		while (!cola.isEmpty()) {
+//			Integer nodo = cola.poll();
+//			
+//			if (distancias.get(nodo) > distancias[nodoActual.indice]) {
+//                continue;
+//            }
+//			for (Integer sucesor : Const.mapaSucesoresAgenteInicial.get(nodo)) {
+//				
+//			}
+//		}
+				
+		
+		
+		return null;
 	}
 
 }

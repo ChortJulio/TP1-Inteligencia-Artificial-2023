@@ -41,6 +41,7 @@ public class Pelear extends SearchAction {
 			if (pokemonState.estaVivo()) {
 				pokemonState.getMapaAgente().put(nodoActual, 0);
 				pokemonState.recargarEnergia((int) Math.floor(pokemonState.getEnergiaEnemigo() * 0.2));
+				pokemonState.setCantidadPokemonsAdversarios(pokemonState.getCantidadPokemonsAdversarios() - 1);
 			}
 			
 			return pokemonState;
@@ -89,6 +90,7 @@ public class Pelear extends SearchAction {
 			if (pokemonState.estaVivo()) {
 				pokemonState.getMapaAgente().put(nodoActual, 0);
 				pokemonState.recargarEnergia((int) Math.floor(pokemonState.getEnergiaEnemigo() * 0.2));
+				pokemonState.setCantidadPokemonsAdversarios(pokemonState.getCantidadPokemonsAdversarios() - 1);
 			}
 			
 			return pokemonEnviromentState;
