@@ -40,11 +40,10 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		this.posicionAgente = 1;
 		this.mapaAmbiente = cargarMapaAmbiente();
 		this.mapaSucesoresAmbiente = cargarMapaSucesoresAmbiente();
+		this.jefeFinal = cargarEnemigoFinal();
 		this.listaPokeparadas = cargarListaPokeparadas();
 		this.listaEnemigos = cargarListaEnemigos();
-		this.jefeFinal = cargarEnemigoFinal();
 		this.turnosRestantesParaUtilizarSatelite = Const.cantidadTurnosParaUtilizarSatelite;
-		
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAmbiente() {
@@ -169,7 +168,9 @@ public class PokemonEnvironmentState extends EnvironmentState{
 			
 			int nodoCandidatoAMoverse = listaPosiblesNodos.get(randomGenerator.nextInt(listaPosiblesNodos.size()));
 			
-			if (this.mapaAmbiente.get(nodoCandidatoAMoverse) == 0 && !existePokeparadaEnNodo(nodoCandidatoAMoverse)) {
+			if (this.mapaAmbiente.get(nodoCandidatoAMoverse) == 0 
+					&& !existePokeparadaEnNodo(nodoCandidatoAMoverse)
+					&& !existeEnemigo(nodoCandidatoAMoverse)) {
 				return nodoCandidatoAMoverse;
 			} else {
 				listaPosiblesNodos.remove((Integer) nodoCandidatoAMoverse);
@@ -181,17 +182,11 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	}
 	
 	private boolean existePokeparadaEnNodo(Integer nodo) {
-		
-		boolean existePokeparadaEnNodo = false;
-		
-		for (Pokeparada pokeparada : this.listaPokeparadas) {
-			if (pokeparada.getNodo() == nodo) {
-				existePokeparadaEnNodo = true;
-				break;
-			}
-		}
-		
-		return existePokeparadaEnNodo;
+		return listaPokeparadas.stream().anyMatch(p -> p.getNodo() == nodo);
+	}
+	
+	private boolean existeEnemigo(Integer nodo) {
+		return listaEnemigos.stream().anyMatch(e -> e.getNodo() == nodo);
 	}
 	/*
 	 * Environment: PokemonEnvironmentState(posicionAgente=4, listaEnemigos=[], jefeFinal=EnemigoFinal(nodo=5, energia=5), listaPokeparadas=[Pokeparada(nodo=6, turnosParaRestablecerse=5)], turnosRestantesParaUtilizarSatelite=9)

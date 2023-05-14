@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Const {
+	public static Random randomGenerator = new Random(Const.seed);
 
 	public static long seed = 2;
 	public static int nodoInicialAgente = 1;
 	public static int energiaInicialAgente = 20;
 	public static int nodoPosicionEnemigoFinal = 8;
-	public static int cantidadEnemigos = 1;
+	public static int cantidadEnemigos = 3;
 	public static int cantidadNodos = 10;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
@@ -20,7 +21,7 @@ public class Const {
 	public static int vidaMinimoEnemigoFinal = 23;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
-	public static int turnosParaUtilizarSatelite = 0;
+	public static int turnosParaUtilizarSatelite = 10;
 	public static int turnosRestantesParaReabastecerPokebolas = 3;
 	public static int energiaMinimaRecargable = 10;
 	public static int energiaMaximaRecargable = 11;
@@ -102,8 +103,8 @@ public class Const {
 	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(1, 3, 5, 7));
 	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(4, 6, 9));
 	public static ArrayList<Integer> sucesoresNodo6 = new ArrayList<Integer>(List.of(5, 7));
-	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8, 29));
-	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9, 11, 28));
+	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8));
+	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9));
 	public static ArrayList<Integer> sucesoresNodo9 = new ArrayList<Integer>(List.of(5, 8, 10));
 	public static ArrayList<Integer> sucesoresNodo10 = new ArrayList<Integer>(List.of(9));
 	public static ArrayList<Integer> sucesoresNodo11 = new ArrayList<Integer>(List.of(8, 12, 28));
@@ -127,7 +128,6 @@ public class Const {
 	public static ArrayList<Integer> sucesoresNodo29 = new ArrayList<Integer>(List.of(7, 26));
 	
 	public static int randomBetween(int max, int min) {
-		Random randomGenerator = new Random(Const.seed);
 		return (randomGenerator.nextInt(max - min + 1) + min);
 	}
 	
@@ -156,7 +156,7 @@ public class Const {
 		mapaActual += "|    "+caracteres.get(1)+"                                          |\n";		
 		mapaActual += "+-----------------------------------------------+\n";
 		
-		System.out.println("Acci�n ejecutada: "+accionEjecutada.toUpperCase());
+		System.out.println("Accion ejecutada: "+accionEjecutada.toUpperCase());
 		System.out.println(mapaActual);
 	}
 

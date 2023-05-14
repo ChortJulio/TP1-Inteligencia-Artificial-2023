@@ -8,7 +8,9 @@ public class PokemonEnvironment extends Environment{
 	
 	public PokemonEnvironment() {
 		// Create the environment state
-		this.environmentState = new PokemonEnvironmentState();
+		PokemonEnvironmentState enviroment = new PokemonEnvironmentState();
+		this.environmentState = enviroment;
+		Const.imprimirMapaActual("Inicializar", enviroment.getMapaAmbiente(), enviroment.getPosicionAgente());
 	}
 
 	@Override
