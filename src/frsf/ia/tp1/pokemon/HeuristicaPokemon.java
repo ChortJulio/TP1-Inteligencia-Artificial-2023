@@ -9,7 +9,7 @@ public class HeuristicaPokemon implements IEstimatedCostFunction {
     public double getEstimatedCost(NTree node) {
         PokemonAgentState pokemonState = (PokemonAgentState) node.getAgentState();
 
-        return 1;
+        return Const.distanciaANodoFinal(pokemonState.getNodoActual());
     }
 
 }

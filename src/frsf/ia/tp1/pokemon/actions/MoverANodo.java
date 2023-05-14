@@ -72,7 +72,10 @@ public class MoverANodo extends SearchAction {
 				mapaAImprimir.put(e.getNodo(), 1);
 			}
 			
+			System.out.println("---- Mapa ambiente ----");
 			Const.imprimirMapaActual("mover a nodo", mapaAImprimir, this.nodo);
+//			System.out.println("---- Mapa agente ----");
+//			Const.imprimirMapaActual("mover a nodo", pokemonState.getMapaAgente(), this.nodo);
 			
 			return pokemonEnvironmentState;
 		}
@@ -89,7 +92,7 @@ public class MoverANodo extends SearchAction {
 			
 			if (pokeparada.getTurnosParaRestablecerse() == 0) {
 				pokemonEnviromentState.getMapaAmbiente().put(pokeparada.getNodo(), 2);
-				pokeparada.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokebolas);
+				pokeparada.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokeparadas);
 			} else {
 				pokeparada.restarTurnoParaRestablerse();
 			}
@@ -100,7 +103,8 @@ public class MoverANodo extends SearchAction {
 		
 		// Actualizar turnos para utilizar satelite
 		if (pokemonEnviromentState.getTurnosRestantesParaUtilizarSatelite() == 0) {
-			pokemonEnviromentState.setTurnosRestantesParaUtilizarSatelite(Const.cantidadTurnosParaUtilizarSatelite);
+			pokemonEnviromentState.setTurnosRestantesParaUtilizarSatelite(
+					Const.randomBetween(Const.cantidadTurnosParaUtilizarSateliteMaximo, Const.cantidadTurnosParaUtilizarSateliteMinimo));
 		} else {
 			pokemonEnviromentState.setTurnosRestantesParaUtilizarSatelite(pokemonEnviromentState.getTurnosRestantesParaUtilizarSatelite() - 1);
 		}

@@ -132,15 +132,15 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		ArrayList<Pokeparada> listaPokeparadasInicial = new ArrayList<>();
 		
 		listaPokeparadasInicial.add(new Pokeparada(6, 0));
-//		listaPokeparadasInicial.add(new Pokeparada(11, 0));
-//		listaPokeparadasInicial.add(new Pokeparada(14, 0));
-//		listaPokeparadasInicial.add(new Pokeparada(19, 0));
+		listaPokeparadasInicial.add(new Pokeparada(11, 0));
+		listaPokeparadasInicial.add(new Pokeparada(14, 0));
+		listaPokeparadasInicial.add(new Pokeparada(19, 0));
 //		listaPokeparadasInicial.add(new Pokeparada(23, 0));
 		
 		mapaAmbiente.put(6, 2);
-//		mapaAmbiente.put(11, 2);
-//		mapaAmbiente.put(14, 2);
-//		mapaAmbiente.put(19, 2);
+		mapaAmbiente.put(11, 2);
+		mapaAmbiente.put(14, 2);
+		mapaAmbiente.put(19, 2);
 //		mapaAmbiente.put(23, 2);
 		
 		return listaPokeparadasInicial;
@@ -195,7 +195,11 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	public String toString() {
 		
 		String estadoAmbiente = "----- ESTADO AMBIENTE ------\n";
-		estadoAmbiente += "Posicion agente: "+this.posicionAgente+". Lista enemigos: "+this.listaEnemigos+".\n";
+		estadoAmbiente += "Posicion agente: "+this.posicionAgente + "\n";
+		estadoAmbiente += "Lista enemigos: " + "\n";
+		for (Enemigo e : this.listaEnemigos) {
+			estadoAmbiente += "     " + e + "\n";
+		}
 		estadoAmbiente += "Posicion jefe final: "+this.jefeFinal.getNodo()+". Energia jefe final: "+this.jefeFinal.getEnergia()+"\n";
 		//estadoAmbiente += "Lista pokeparadas: "+this.listaPokeparadas+". Turnos restantes para satelite: "+this.turnosRestantesParaUtilizarSatelite+"\n";
 		estadoAmbiente += "Turnos restantes para satelite: "+this.turnosRestantesParaUtilizarSatelite+"\n";

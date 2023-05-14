@@ -64,7 +64,9 @@ public class Pelear extends SearchAction {
 		
 		int nodoActual = pokemonEnviromentState.getPosicionAgente();
 		
-		if ( pokemonState.estaVivo() && !pokemonState.escapo()) {
+		if ( pokemonState.estaVivo() && 
+				(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
+				 !pokemonState.escapo()) {
 			
 			//System.out.println("Pelear dentro del execute del ambiente");
 			
@@ -76,7 +78,7 @@ public class Pelear extends SearchAction {
 				// Eliminar enemigo de la lista de enemigos del ambiente
 				pokemonEnviromentState.setListaEnemigos(
 						pokemonEnviromentState.getListaEnemigos().stream()
-						.filter(e -> e.getNodo() == nodoActual )
+						.filter(e -> e.getNodo() != nodoActual )
 						.collect(Collectors.toList()));
 			}
 			

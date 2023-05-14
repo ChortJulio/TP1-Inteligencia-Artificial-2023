@@ -56,7 +56,7 @@ public class Curarse extends SearchAction {
 			
 			for (Pokeparada pokeparada : pokemonEnviromentState.getListaPokeparadas()) {
 				if (pokeparada.getNodo() == nodoActualAgente) {
-					pokeparada.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokebolas);
+					pokeparada.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokeparadas);
 					break;
 				}
 			}

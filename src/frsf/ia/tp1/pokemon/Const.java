@@ -14,26 +14,27 @@ public class Const {
 	public static int nodoInicialAgente = 1;
 	public static int energiaInicialAgente = 20;
 	public static int nodoPosicionEnemigoFinal = 24;
-	public static int cantidadEnemigos = 3;
+	public static int cantidadEnemigos = 7;
 	public static int cantidadNodos = 29;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
-	public static int vidaMaximoEnemigoFinal = 28;
-	public static int vidaMinimoEnemigoFinal = 26;
+	public static int vidaMaximoEnemigoFinal = 50;
+	public static int vidaMinimoEnemigoFinal = 40;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
-	public static int turnosRestantesParaReabastecerPokebolas = 3;
 	public static int energiaMinimaRecargable = 5;
-	public static int energiaMaximaRecargable = 6;
-	public static int turnosMaximosParaReabastecerPokebolas = 5;
-	public static int cantidadTurnosParaUtilizarSatelite = 5;
+	public static int energiaMaximaRecargable = 10;
+	public static int turnosMaximosParaReabastecerPokeparadas = 3;
+	public static int cantidadTurnosParaUtilizarSateliteMinimo = 5;
+	public static int cantidadTurnosParaUtilizarSateliteMaximo = 10;
+	public static int cantidadTurnosParaUtilizarSatelite = 10;
 	public static int cantidadTurnosParaUsarSateliteInicial = 0;
-	public static int cantidadTurnosParaUtilizarAtaque = 1;
+	public static int cantidadTurnosParaUtilizarAtaque = 3;
 	public static int cantidadVisitasANodoMaximas = 3;
 	public static double porcentajeRecuperacionEnergiaAtaque0 = 0.2;
 	public static double porcentajeRecuperacionEnergiaAtaque1 = 0.3;
 	public static double porcentajeRecuperacionEnergiaAtaque2 = 0.5;
-	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial0 = 1.10;
+	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial0 = 1.25;
 	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial1 = 1.75;
 	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2 = 2.2;
 	
@@ -78,8 +79,8 @@ public class Const {
 	public static ArrayList<Integer> sucesoresNodo4 = new ArrayList<Integer>(List.of(1, 3, 5, 7));
 	public static ArrayList<Integer> sucesoresNodo5 = new ArrayList<Integer>(List.of(4, 6, 9));
 	public static ArrayList<Integer> sucesoresNodo6 = new ArrayList<Integer>(List.of(5, 7));
-	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8));
-	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9));
+	public static ArrayList<Integer> sucesoresNodo7 = new ArrayList<Integer>(List.of(4, 6, 8, 29));
+	public static ArrayList<Integer> sucesoresNodo8 = new ArrayList<Integer>(List.of(7, 9, 11, 28));
 	public static ArrayList<Integer> sucesoresNodo9 = new ArrayList<Integer>(List.of(5, 8, 10));
 	public static ArrayList<Integer> sucesoresNodo10 = new ArrayList<Integer>(List.of(9));
 	public static ArrayList<Integer> sucesoresNodo11 = new ArrayList<Integer>(List.of(8, 12, 28));
@@ -144,7 +145,12 @@ public class Const {
 			caracteres.put(i, mapa.get(i).toString());
 		}
 		
-		caracteres.replace(nodoActualAgente, "X"); //VER
+		if (mapa.get(nodoActualAgente).equals(1)) {
+			caracteres.replace(nodoActualAgente, "P");
+		}
+		else {
+			caracteres.replace(nodoActualAgente, "X");
+		}
 		
 		String mapaActual = "+-----------------------------------------------+\n";
 		mapaActual += "|        "+caracteres.get(11)+"  ------ "+caracteres.get(12)+"  ---- "+caracteres.get(13)+"  -------- "+caracteres.get(14)+"  --- "+caracteres.get(15)+" |\n";
@@ -162,7 +168,7 @@ public class Const {
 		mapaActual += "|    "+caracteres.get(1)+"                                          |\n";		
 		mapaActual += "+-----------------------------------------------+\n";
 		
-		System.out.println("Accion ejecutada: "+accionEjecutada.toUpperCase());
+		//System.out.println("Accion ejecutada: "+accionEjecutada.toUpperCase());
 		System.out.println(mapaActual);
 	}
 
@@ -215,6 +221,10 @@ public class Const {
 		mapaSucesores.put(29, Const.sucesoresNodo29);
 		
 		return mapaSucesores;
+	}
+	
+	public static int distanciaANodoFinal(int nodo) {
+		return distanciaAEnemigoFinal.get(nodo-1);
 	}
 	
 	public static ArrayList<Integer> calcularDistanciaAEnemigoFinal() {

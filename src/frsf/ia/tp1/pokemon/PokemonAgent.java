@@ -9,8 +9,10 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.faia.solver.search.AStarSearch;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
+import frsf.cidisi.faia.solver.search.IEstimatedCostFunction;
 import frsf.cidisi.faia.solver.search.IStepCostFunction;
 import frsf.cidisi.faia.solver.search.Search;
 import frsf.cidisi.faia.solver.search.UniformCostSearch;
@@ -58,10 +60,14 @@ public class PokemonAgent extends SearchBasedAgent{
 	@Override
 	public Action selectAction() {
 		
-		IStepCostFunction costFunction = new CostFunction();
-        UniformCostSearch strategy = new UniformCostSearch(costFunction);
+//		IStepCostFunction costFunction = new CostFunction();
+//		UniformCostSearch strategy = new UniformCostSearch(costFunction);
 //		DepthFirstSearch strategy = new DepthFirstSearch();
 //		BreathFirstSearch strategy = new BreathFirstSearch();
+		
+        IStepCostFunction cost = new CostFunction();
+        IEstimatedCostFunction heuristic = new HeuristicaPokemon();
+        AStarSearch strategy = new AStarSearch(cost, heuristic);
         
         
 
