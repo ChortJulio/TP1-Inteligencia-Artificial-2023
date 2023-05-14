@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.ia.tp1.pokemon.ataquesEspeciales.AtaqueEspecial;
 import frsf.ia.tp1.pokemon.enemigos.Enemigo;
 import frsf.ia.tp1.pokemon.enemigos.EnemigoFinal;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private int energiaInicial;
 	private int energia;
 	private int energiaEnemigo;
-	private List<Integer> turnosRestantesParaUtilizarAtaquesEspeciales;
+	private ArrayList<AtaqueEspecial> ataquesEspeciales;
 	private int escudo;
 	private boolean escapo;
 	private int cantidadPokemonsAdversarios;
@@ -54,7 +55,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.energiaInicial = Const.energiaInicialAgente;
 		this.energia = energiaInicial;
 		this.energiaEnemigo = 0; //VER
-		this.turnosRestantesParaUtilizarAtaquesEspeciales = cargarTurnosRestantesParaUtilizarAtaquesEspeciales();
+		this.ataquesEspeciales = cargarAtaquesEspecialesIniciales();
 		this.escudo = 0;
 		this.escapo = false;
 		this.cantidadPokemonsAdversarios = Const.cantidadEnemigos;
@@ -69,16 +70,10 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		
 		this.energia += cantidadEnergia;
 		
-		if(this.energia >= this.energiaInicial*1.25 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(0) == -1) {
-			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(0, 0);
-		}
-		
-		if(this.energia >= this.energiaInicial*1.75 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(1) == -1) {
-			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(1, 0);
-		}
-		
-		if(this.energia >= this.energiaInicial*2.2 && this.turnosRestantesParaUtilizarAtaquesEspeciales.get(2) == -1) {
-			this.turnosRestantesParaUtilizarAtaquesEspeciales.add(2, 0);
+		for(AtaqueEspecial ae : this.ataquesEspeciales) {
+			if (ae.getTurnosRestantesParaUtilizar() == -1) {
+				ae.habilitarAtaqueEspecial(this.energia, this.energiaInicial);
+			}
 		}
 	}
 	
@@ -179,15 +174,15 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		return mapaSucesoresAgenteInicial;
 	}
 	
-	private ArrayList<Integer> cargarTurnosRestantesParaUtilizarAtaquesEspeciales() {
+	private ArrayList<AtaqueEspecial> cargarAtaquesEspecialesIniciales() {
 		
-		ArrayList<Integer> turnosRestantesParaUtilizarAtaquesEspecialInicial = new ArrayList<>();
+		ArrayList<AtaqueEspecial> ataquesEspecialesIniciales = new ArrayList<>();
 		
-		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(0, -1);
-		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(1, -1);
-		turnosRestantesParaUtilizarAtaquesEspecialInicial.add(2, -1);
+		ataquesEspecialesIniciales.add(new AtaqueEspecial(0, Const.porcentajeRecuperacionEnergiaAtaque0, -1, Const.porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial0));
+		ataquesEspecialesIniciales.add(new AtaqueEspecial(1, Const.porcentajeRecuperacionEnergiaAtaque1, -1, Const.porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial1));
+		ataquesEspecialesIniciales.add(new AtaqueEspecial(2, Const.porcentajeRecuperacionEnergiaAtaque2, -1, Const.porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2));
 		
-		return turnosRestantesParaUtilizarAtaquesEspecialInicial;
+		return ataquesEspecialesIniciales;
 	}
 
 	@Override
@@ -203,8 +198,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 				&& energiaEnemigo == other.energiaEnemigo && energiaInicial == other.energiaInicial
 				&& escapo == other.escapo && escudo == other.escudo && Objects.equals(mapaAgente, other.mapaAgente)
 				&& Objects.equals(mapaSucesoresAgente, other.mapaSucesoresAgente) && nodoActual == other.nodoActual
-				&& Objects.equals(turnosRestantesParaUtilizarAtaquesEspeciales,
-						other.turnosRestantesParaUtilizarAtaquesEspeciales);
+				&& ataquesEspeciales.equals(other.ataquesEspeciales);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -219,7 +213,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.energiaInicial,
 												this.energia, 
 												this.energiaEnemigo, 
-												this.turnosRestantesParaUtilizarAtaquesEspeciales.stream().collect(Collectors.toList()), 
+												(ArrayList<AtaqueEspecial>)this.ataquesEspeciales.clone(), 
 												this.escudo, 
 												this.escapo, 
 												this.cantidadPokemonsAdversarios,
@@ -261,7 +255,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		String estadoPokemon = "----- ESTADO POKEMON ------\n";
 		estadoPokemon += "Nodo actual: "+this.nodoActual+". Energia: "+this.energia+".\n";
 		estadoPokemon += "Energia enemigo: "+this.energiaEnemigo+". Escudo: "+this.escudo+". Escapo: "+this.escapo+"\n";
-		estadoPokemon += "Ataques especiales: "+this.turnosRestantesParaUtilizarAtaquesEspeciales+". Cant enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
+		estadoPokemon += "Ataques especiales: "+this.ataquesEspeciales+". Cant enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
 		estadoPokemon += "Contenido nodo actual: "+this.mapaAgente.get(this.nodoActual)+"\n";
 
 		return estadoPokemon;

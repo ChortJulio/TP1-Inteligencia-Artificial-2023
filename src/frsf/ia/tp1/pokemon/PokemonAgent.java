@@ -37,9 +37,9 @@ public class PokemonAgent extends SearchBasedAgent{
 		}
 		
 		// Operadores Usar Ataque Especial
-		operators.addElement(new UsarAtaqueEspecial(0, Const.porcentajeRecuperacionEnergiaAtaque0));
-		operators.addElement(new UsarAtaqueEspecial(1, Const.porcentajeRecuperacionEnergiaAtaque1));
-		operators.addElement(new UsarAtaqueEspecial(2, Const.porcentajeRecuperacionEnergiaAtaque2));
+		operators.addElement(new UsarAtaqueEspecial(0));
+		operators.addElement(new UsarAtaqueEspecial(1));
+		operators.addElement(new UsarAtaqueEspecial(2));
 		
 		operators.addElement(new Curarse());
 		operators.addElement(new Pelear());
