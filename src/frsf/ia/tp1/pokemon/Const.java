@@ -13,9 +13,9 @@ public class Const {
 	public static long seed = 2;
 	public static int nodoInicialAgente = 1;
 	public static int energiaInicialAgente = 20;
-	public static int nodoPosicionEnemigoFinal = 8;
+	public static int nodoPosicionEnemigoFinal = 24;
 	public static int cantidadEnemigos = 3;
-	public static int cantidadNodos = 10;
+	public static int cantidadNodos = 29;
 	public static int vidaMaximoEnemigo = 15;
 	public static int vidaMinimoEnemigo = 5;
 	public static int vidaMaximoEnemigoFinal = 28;
