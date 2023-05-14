@@ -30,7 +30,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private int energiaInicial;
 	private int energia;
 	private int energiaEnemigo;
-	private ArrayList<AtaqueEspecial> ataquesEspeciales;
+	private List<AtaqueEspecial> ataquesEspeciales;
 	private int escudo;
 	private boolean escapo;
 	private int cantidadPokemonsAdversarios;
@@ -205,7 +205,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.energiaInicial,
 												this.energia, 
 												this.energiaEnemigo, 
-												(ArrayList<AtaqueEspecial>)this.ataquesEspeciales.clone(), 
+												this.ataquesEspeciales.stream().map(ae -> ae.clone()).collect(Collectors.toList()), 
 												this.escudo, 
 												this.escapo, 
 												this.cantidadPokemonsAdversarios,
@@ -246,10 +246,11 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	public String toString() {
 		
 		String estadoPokemon = "----- ESTADO POKEMON ------\n";
-		estadoPokemon += "Nodo actual: "+this.nodoActual+". Energia: "+this.energia+".\n";
-		estadoPokemon += "Energia enemigo: "+this.energiaEnemigo+". Escudo: "+this.escudo+". Escapo: "+this.escapo+"\n";
-		estadoPokemon += "Ataques especiales: "+this.ataquesEspeciales+". Cant enemigos restante: "+this.cantidadPokemonsAdversarios+"\n";
-		estadoPokemon += "Contenido nodo actual: "+this.mapaAgente.get(this.nodoActual)+"\n";
+		estadoPokemon += "Nodo actual: " + this.nodoActual + ". Energia: " + this.energia + ".\n";
+		estadoPokemon += "Energia enemigo: " + this.energiaEnemigo + ". Escudo: " + this.escudo+". Escapo: " + this.escapo + "\n";
+		estadoPokemon += "Ataques especiales: " + this.ataquesEspeciales + ". Cant enemigos restante: " + this.cantidadPokemonsAdversarios + "\n";
+		estadoPokemon += "Contenido nodo actual: " + this.mapaAgente.get(this.nodoActual) + "\n";
+		estadoPokemon += "Cantidad movimientos: " + this.cantidadMovimientosTotales + "\n";
 
 		return estadoPokemon;
 	}

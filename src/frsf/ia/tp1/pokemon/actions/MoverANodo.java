@@ -32,11 +32,7 @@ public class MoverANodo extends SearchAction {
 		
 		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) && pokemonState.puedeMoverse(this.nodo)) {
 			
-//			System.out.println("Estado al mover: " + pokemonState);
-			
-			pokemonState.setNodoActual(this.nodo);
-			pokemonState.setEscapo(false);
-			pokemonState.setEscudo(0);
+			this.avanzarTurno(pokemonState);
 			
 			return pokemonState;
 		}
@@ -52,8 +48,6 @@ public class MoverANodo extends SearchAction {
 	@Override
 	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 		
-		//System.out.println("Mover a nodo - Este es el metodo execute que cambia el ambiente");
-		
 		PokemonEnvironmentState pokemonEnvironmentState = (PokemonEnvironmentState) est;
 		PokemonAgentState pokemonState = ((PokemonAgentState) ast);
 		
@@ -65,8 +59,6 @@ public class MoverANodo extends SearchAction {
 				&& pokemonState.puedeMoverse(this.nodo)) {
 			pokemonEnvironmentState.setPosicionAgente(this.nodo);
 			
-//			System.out.println("Estado al mover: " + pokemonState);
-			
 			this.avanzarTurno(pokemonState, pokemonEnvironmentState);	
 			
 			for (Integer nodo : pokemonEnvironmentState.getMapaAmbiente().keySet()) {
@@ -77,8 +69,6 @@ public class MoverANodo extends SearchAction {
 				mapaAImprimir.put(e.getNodo(), 1);
 			}
 			
-			
-			
 			Const.imprimirMapaActual("mover a nodo", mapaAImprimir, this.nodo);
 			
 			return pokemonEnvironmentState;
@@ -88,19 +78,8 @@ public class MoverANodo extends SearchAction {
 	}
 	
 	private void avanzarTurno(PokemonAgentState pokemonState, PokemonEnvironmentState pokemonEnviromentState) {
-		
-		// Actualizar agente
-		pokemonState.setNodoActual(this.nodo);
-		pokemonState.setEscapo(false);
-		pokemonState.setEscudo(0);
-		
-		// Actualizar ataques especiales
-		for(AtaqueEspecial ae : pokemonState.getAtaquesEspeciales()) {
-			ae.restarUnTurnoParaUtilizar();
-		}
-		
-		// Actualiza cantidad de movimientos realizados
-		pokemonState.setCantidadMovimientosTotales(pokemonState.getCantidadMovimientosTotales()+1);
+//		// Actualizar agente
+		this.avanzarTurno(pokemonState);
 		
 		// Actualizar Pokeparadas
 		for (Pokeparada pokeparada: pokemonEnviromentState.getListaPokeparadas()) {
@@ -123,6 +102,21 @@ public class MoverANodo extends SearchAction {
 			pokemonEnviromentState.setTurnosRestantesParaUtilizarSatelite(pokemonEnviromentState.getTurnosRestantesParaUtilizarSatelite() - 1);
 		}
 		
+	}
+	
+	private void avanzarTurno(PokemonAgentState pokemonState) {
+		// Actualizar agente
+		pokemonState.setNodoActual(this.nodo);
+		pokemonState.setEscapo(false);
+		pokemonState.setEscudo(0);
+		
+		// Actualizar ataques especiales
+		for(AtaqueEspecial ae : pokemonState.getAtaquesEspeciales()) {
+			ae.restarUnTurnoParaUtilizar();
+		}
+		
+		// Actualiza cantidad de movimientos realizados
+		pokemonState.setCantidadMovimientosTotales(pokemonState.getCantidadMovimientosTotales()+1);
 	}
 
 }

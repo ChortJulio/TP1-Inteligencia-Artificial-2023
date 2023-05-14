@@ -60,8 +60,8 @@ public class PokemonAgent extends SearchBasedAgent{
 		
 //		IStepCostFunction costFunction = new CostFunction();
 //        UniformCostSearch strategy = new UniformCostSearch(costFunction);
-//		DepthFirstSearch strategy = new DepthFirstSearch();
-		BreathFirstSearch strategy = new BreathFirstSearch();
+		DepthFirstSearch strategy = new DepthFirstSearch();
+//		BreathFirstSearch strategy = new BreathFirstSearch();
 
 		// Create a Search object with the strategy
         Search searchSolver = new Search(strategy);

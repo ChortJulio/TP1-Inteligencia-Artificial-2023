@@ -24,7 +24,7 @@ public class AtaqueEspecial {
 	public void habilitarAtaqueEspecial(int energiaActual, int energiaInicial) {
 		if (energiaActual >= energiaInicial * this.porcentajeDeVidaNecesarioParaHabilitar &&
 			this.turnosRestantesParaUtilizar == -1) {
-			this.turnosRestantesParaUtilizar = 10;
+			this.turnosRestantesParaUtilizar = Const.cantidadTurnosParaUtilizarAtaque;
 		}
 	}
 	
@@ -36,6 +36,14 @@ public class AtaqueEspecial {
 		if(this.turnosRestantesParaUtilizar > 0) {
 			this.turnosRestantesParaUtilizar--;
 		}
+	}
+	
+	public AtaqueEspecial clone() {
+		return new AtaqueEspecial(
+				numeroAtaque, 
+				porcentajeRecuperacionEnergia, 
+				turnosRestantesParaUtilizar, 
+				porcentajeDeVidaNecesarioParaHabilitar);
 	}
 	
 	
