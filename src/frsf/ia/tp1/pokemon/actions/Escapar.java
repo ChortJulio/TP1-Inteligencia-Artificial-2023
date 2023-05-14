@@ -21,7 +21,7 @@ public class Escapar extends SearchAction {
 			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
 			!pokemonState.escapo()) {
 			
-			System.out.println("Escapo");
+			//System.out.println("Escapo");
 			pokemonState.setEnergia(pokemonState.getEnergia() - pokemonState.getEnergiaEnemigo() / 4);
 			pokemonState.setEscapo(true);
 			
@@ -48,7 +48,7 @@ public class Escapar extends SearchAction {
 			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
 			!pokemonState.escapo()) {
 			
-			System.out.println("Escapo");
+			//System.out.println("Escapo");
 			
 			pokemonState.setEnergia(pokemonState.getEnergia() - pokemonState.getEnergiaEnemigo() / 4);
 			pokemonState.setEscapo(true);

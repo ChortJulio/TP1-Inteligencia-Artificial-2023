@@ -84,9 +84,7 @@ public class PokemonPerception extends Perception {
 		
 		// Si el agente esta en el nodo del jefe final, se le pasa la energia del jefe
 		if (environmentState.getPosicionAgente() == environmentState.getJefeFinal().getNodo()) {
-			if (environmentState.getJefeFinal().getEnergia() > 0) {
-				energiaEnemigoEnNodoActual = environmentState.getJefeFinal().getEnergia();
-			}
+			energiaEnemigoEnNodoActual = environmentState.getJefeFinal().getEnergia();
 		}
 		
 		if (environmentState.getMapaSucesoresAmbiente().get(environmentState.getPosicionAgente()).contains(Const.nodoPosicionEnemigoFinal)) {

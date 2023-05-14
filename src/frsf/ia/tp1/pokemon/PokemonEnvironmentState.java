@@ -172,7 +172,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 			if (this.mapaAmbiente.get(nodoCandidatoAMoverse) == 0 && !existePokeparadaEnNodo(nodoCandidatoAMoverse)) {
 				return nodoCandidatoAMoverse;
 			} else {
-				listaPosiblesNodos.remove(nodoCandidatoAMoverse);
+				listaPosiblesNodos.remove((Integer) nodoCandidatoAMoverse);
 			}
 		}
 		

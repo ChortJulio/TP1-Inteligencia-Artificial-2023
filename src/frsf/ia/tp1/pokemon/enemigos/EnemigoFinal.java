@@ -15,6 +15,6 @@ public class EnemigoFinal {
 	
 	public EnemigoFinal(int nodo) {
 		this.nodo = nodo;
-		this.energia = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
+		this.energia = Const.vidaEnemigoFinal;
 	}
 }
