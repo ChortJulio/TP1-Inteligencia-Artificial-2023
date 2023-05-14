@@ -38,7 +38,7 @@ public class Const {
 	public static double porcentajeDeVidaNecesarioParaHabilitarAtaqueEspecial2 = 2.2;
 	
 	public static int vidaEnemigoFinal = Const.randomBetween(Const.vidaMaximoEnemigoFinal, Const.vidaMinimoEnemigoFinal);
-	public static HashMap<Integer, Integer> distanciaANodoFinal = Const.calcularDistanciaANodoFinal();
+	public static ArrayList<Integer> distanciaAEnemigoFinal = Const.calcularDistanciaAEnemigoFinal();
 	
 	public static int contenidoInicialNodo1 = 0;
 	public static int contenidoInicialNodo2 = 0;
@@ -168,15 +168,15 @@ public class Const {
 
 	public static void imprimirCartelVictoria() {
 		
-		String cartelVictoria = "+-----------------------------------------------+\n";
-		cartelVictoria += "| __         __   _                             |\n";
-		cartelVictoria += "| \\ \\       / /  | |                                 |\n";
-		cartelVictoria += "|  \\ \\     / /   | |                                |\n";
-		cartelVictoria += "|   \\ \\   / /    | |                                |\n";
-		cartelVictoria += "|    \\ \\_/ /     | |                                   |\n";
-		cartelVictoria += "|     \\___/      |_|                             |\n";
-		cartelVictoria += "|                                               |\n";
-		cartelVictoria += "+-----------------------------------------------+\n";
+		String cartelVictoria = "+-------------------------------------------------------------------------------+\n";
+		cartelVictoria += "| __         __   _     _____    _______    _____     _____     _       __      |\n";
+		cartelVictoria += "| \\ \\       / /  | |   / ____|  |___ ___|  /  __ \\   |  _  |   | |     /  \\     |\n";
+		cartelVictoria += "|  \\ \\     / /   | |   | |         | |     | /  \\ |  | |_| |   | |    / /\\ \\    |\n";
+		cartelVictoria += "|   \\ \\   / /    | |   | |         | |     | |  | |  |  _  |   | |   / /__\\ \\   |\n";
+		cartelVictoria += "|    \\ \\_/ /     | |   | |___      | |     | \\__/ |  | | \\ \\   | |  / _____  \\  |\n";
+		cartelVictoria += "|     \\___/      |_|   \\_____|     |_|     \\_____/   |_|  \\_\\  |_| /_/      \\_\\ |\n";
+		cartelVictoria += "|                                                                               |\n";
+		cartelVictoria += "+-------------------------------------------------------------------------------+\n";
 		
 		System.out.println(cartelVictoria);
 	}
@@ -217,18 +217,50 @@ public class Const {
 		return mapaSucesores;
 	}
 	
-	public static HashMap<Integer, Integer> calcularDistanciaANodoFinal() {
-		List<Integer> nodos = new ArrayList<>();
-		HashMap<Integer, Integer> distancias = new HashMap<>();
-		PriorityQueue<Integer> cola = new PriorityQueue<>((e1, e2) -> distancias.get(e1).compareTo(e2));
+	public static ArrayList<Integer> calcularDistanciaAEnemigoFinal() {
+//		List<Integer> nodos = new ArrayList<>();
+//		HashMap<Integer, Integer> distancias = new HashMap<>();
+//		PriorityQueue<Integer> cola = new PriorityQueue<>((e1, e2) -> distancias.get(e1).compareTo(e2));
+//		
+//		Integer nodoOrigen = nodoPosicionEnemigoFinal;
+//		Integer nodoDestino = nodoInicialAgente;
+//		
+//		for (int i=1; i<=cantidadNodos; i++) {
+//			nodos.add(i);
+//			distancias.put(i, Integer.MAX_VALUE);
+//		}
 		
-		Integer nodoOrigen = nodoPosicionEnemigoFinal;
-		Integer nodoDestino = nodoInicialAgente;
-		
-		for (int i=1; i<=cantidadNodos; i++) {
-			nodos.add(i);
-			distancias.put(i, Integer.MAX_VALUE);
-		}
+		return new ArrayList<Integer>(List.of(
+				6, // Nodo 1
+				7, // Nodo 2
+				6, // Nodo 3
+				5, // Nodo 4
+				6, // Nodo 5
+				5, // Nodo 6
+				4, // Nodo 7
+				5, // Nodo 8
+				6, // Nodo 9
+				7, // Nodo 10
+				5, // Nodo 11
+				4, // Nodo 12
+				3, // Nodo 13
+				4, // Nodo 14
+				5, // Nodo 15
+				4, // Nodo 16
+				3, // Nodo 17
+				3, // Nodo 18
+				2, // Nodo 19
+				1, // Nodo 20
+				2, // Nodo 21
+				2, // Nodo 22
+				1, // Nodo 23
+				0, // Nodo 24
+				1, // Nodo 25
+				2, // Nodo 26
+				3, // Nodo 27
+				4, // Nodo 28
+				3 // Nodo 29				
+				));
 		
 //		distancias.put(nodoOrigen, 0);
 //		cola.offer(nodoOrigen);
@@ -245,10 +277,6 @@ public class Const {
 //				
 //			}
 //		}
-				
-		
-		
-		return null;
 	}
 
 }
