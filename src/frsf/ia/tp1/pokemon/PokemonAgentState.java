@@ -27,6 +27,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private HashMap<Integer, Integer> mapaAgente;
 	private HashMap<Integer, ArrayList<Integer>> mapaSucesoresAgente;
 	private HashMap<Integer, Integer> energiaEnemigosSucesores;
+	private HashMap<Integer, Integer> visitasAlNodo;
 	private int energiaInicial;
 	private int energia;
 	private int energiaEnemigo;
@@ -54,6 +55,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		this.mapaAgente = cargarMapaAgente();
 		this.mapaSucesoresAgente = cargarMapaSucesoresAgente();
 		this.energiaEnemigosSucesores = new HashMap<Integer, Integer>();
+		this.visitasAlNodo = cargarVisitasAlNodo();
 		this.energiaInicial = Const.energiaInicialAgente;
 		this.energia = energiaInicial;
 		this.energiaEnemigo = 0; //VER
@@ -80,10 +82,8 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	}
 	
 	public boolean puedeMoverse(Integer nodoAlQueSeMueve) {
-		
-		if(this.mapaAgente.get(nodoActual) == 0 || this.escapo) return true;
-		
-		return false;
+		return (this.mapaAgente.get(nodoActual) == 0 || this.escapo) 
+				&& this.visitasAlNodo.get(nodoAlQueSeMueve) < Const.cantidadVisitasANodoMaximas;
 	}
 	
 	private LinkedHashMap<Integer, Integer> cargarMapaAgente() {
@@ -166,6 +166,18 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		return mapaSucesoresAgenteInicial;
 	}
 	
+	private HashMap<Integer, Integer> cargarVisitasAlNodo() {
+		HashMap<Integer, Integer> visitasAlNodo = new HashMap<>();
+		
+		for (int i = 1; i <= Const.cantidadNodos; i++) {
+			visitasAlNodo.put(i, 0);
+		}
+		
+		visitasAlNodo.put(Const.nodoInicialAgente, 1);
+		
+		return visitasAlNodo;
+	}
+	
 	private ArrayList<AtaqueEspecial> cargarAtaquesEspecialesIniciales() {
 		
 		ArrayList<AtaqueEspecial> ataquesEspecialesIniciales = new ArrayList<>();
@@ -202,6 +214,7 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												(HashMap<Integer, Integer>) this.mapaAgente.clone(),
 												(HashMap<Integer, ArrayList<Integer>>) this.mapaSucesoresAgente.clone(),
 												(HashMap<Integer, Integer>) this.energiaEnemigosSucesores.clone(),
+												(HashMap<Integer, Integer>) this.visitasAlNodo.clone(),
 												this.energiaInicial,
 												this.energia, 
 												this.energiaEnemigo, 

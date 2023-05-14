@@ -28,6 +28,7 @@ public class Const {
 	public static int cantidadTurnosParaUtilizarSatelite = 5;
 	public static int cantidadTurnosParaUsarSateliteInicial = 0;
 	public static int cantidadTurnosParaUtilizarAtaque = 1;
+	public static int cantidadVisitasANodoMaximas = 3;
 	public static double porcentajeRecuperacionEnergiaAtaque0 = 0.2;
 	public static double porcentajeRecuperacionEnergiaAtaque1 = 0.3;
 	public static double porcentajeRecuperacionEnergiaAtaque2 = 0.5;

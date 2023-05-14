@@ -30,7 +30,9 @@ public class MoverANodo extends SearchAction {
 		
 		int nodoActual = pokemonState.getNodoActual();
 		
-		if (pokemonState.estaVivo() && pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) && pokemonState.puedeMoverse(this.nodo)) {
+		if (pokemonState.estaVivo() 
+				&& pokemonState.getMapaSucesoresAgente().get(nodoActual).contains(this.nodo) 
+				&& pokemonState.puedeMoverse(this.nodo)) {
 			
 			this.avanzarTurno(pokemonState);
 			
@@ -117,6 +119,8 @@ public class MoverANodo extends SearchAction {
 		
 		// Actualiza cantidad de movimientos realizados
 		pokemonState.setCantidadMovimientosTotales(pokemonState.getCantidadMovimientosTotales()+1);
+		
+		pokemonState.getVisitasAlNodo().put(this.nodo, pokemonState.getVisitasAlNodo().get(this.nodo) + 1);
 	}
 
 }
