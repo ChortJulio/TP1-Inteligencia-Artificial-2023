@@ -38,7 +38,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	@Override
 	public void initState() {
 		
-		this.posicionAgente = 1;
+		this.posicionAgente = Const.nodoInicialAgente;
 		this.mapaAmbiente = cargarMapaAmbiente();
 		this.mapaSucesoresAmbiente = Const.sucesores();
 		this.jefeFinal = cargarEnemigoFinal();
