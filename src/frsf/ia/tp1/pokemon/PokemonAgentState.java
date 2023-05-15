@@ -26,7 +26,6 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	private int nodoActual;
 	private HashMap<Integer, Integer> mapaAgente;
 	private HashMap<Integer, List<Integer>> mapaSucesoresAgente;
-	private HashMap<Integer, Integer> energiaEnemigosSucesores;
 	private HashMap<Integer, Integer> visitasAlNodo;
 	private int energiaInicial;
 	private int energia;
@@ -51,10 +50,9 @@ public class PokemonAgentState extends SearchBasedAgentState {
 	public void initState() {
 		
 		this.nodoActual = Const.nodoInicialAgente;
-		this.energiaEnemigoFinal = Const.vidaEnemigoFinal;
+		this.energiaEnemigoFinal = Const.energiaEnemigoFinal;
 		this.mapaAgente = cargarMapaAgente();
 		this.mapaSucesoresAgente = Const.sucesores();
-		this.energiaEnemigosSucesores = new HashMap<Integer, Integer>();
 		this.visitasAlNodo = cargarVisitasAlNodo();
 		this.energiaInicial = Const.energiaInicialAgente;
 		this.energia = energiaInicial;
@@ -176,7 +174,6 @@ public class PokemonAgentState extends SearchBasedAgentState {
 												this.nodoActual,
 												(HashMap<Integer, Integer>) this.mapaAgente.clone(),
 												(HashMap<Integer, List<Integer>>) this.mapaSucesoresAgente.clone(),
-												(HashMap<Integer, Integer>) this.energiaEnemigosSucesores.clone(),
 												(HashMap<Integer, Integer>) this.visitasAlNodo.clone(),
 												this.energiaInicial,
 												this.energia, 
@@ -205,11 +202,6 @@ public class PokemonAgentState extends SearchBasedAgentState {
 		
 		for (Integer nodo : percepcion.getContenidoNodosSucesores().keySet()) {
 			this.mapaAgente.put(nodo, percepcion.getContenidoNodosSucesores().get(nodo));
-		}
-		
-		this.energiaEnemigosSucesores.clear();
-		for (Integer nodo : percepcion.getEnergiaEnemigosSucesores().keySet()) {
-			this.energiaEnemigosSucesores.put(nodo, percepcion.getEnergiaEnemigosSucesores().get(nodo));
 		}
 		
 		if (percepcion.isPuedeUsarSatelite()) {

@@ -23,7 +23,6 @@ public class PokemonPerception extends Perception {
     
     // Que hay en los nodos sucesores
     private HashMap<Integer, Integer> contenidoNodosSucesores;
-    private HashMap<Integer, Integer> energiaEnemigosSucesores;
     private HashMap<Integer, Integer> mapaPorSatelite;
     private boolean puedeUsarSatelite;
     
@@ -45,7 +44,6 @@ public class PokemonPerception extends Perception {
 		contenidoNodoActual = environmentState.getMapaAmbiente().get(environmentState.getPosicionAgente());
 		energiaEnemigoEnNodoActual = 0;
 		contenidoNodosSucesores = new HashMap<>();
-		energiaEnemigosSucesores = new HashMap<>();
 		mapaPorSatelite = new HashMap<>();
 		
 		/* 
@@ -53,7 +51,6 @@ public class PokemonPerception extends Perception {
 		 *	estado que figura en el mapa 
 		 */
 		for (Integer nodo : environmentState.getMapaSucesoresAmbiente().get(environmentState.getPosicionAgente())) {
-			System.out.println("PokemonPerception -------- Sucesor: " + nodo);
 			contenidoNodosSucesores.put(nodo, environmentState.getMapaAmbiente().get(nodo));
 		}
 		
@@ -76,7 +73,6 @@ public class PokemonPerception extends Perception {
 			// Si hay un enemigo en un sucesor, se agrega esta informacion a contenidoNodosSucesores
 			if (contenidoNodosSucesores.keySet().contains(e.getNodo()))	{
 				contenidoNodosSucesores.put(e.getNodo(), 1);
-				energiaEnemigosSucesores.put(e.getNodo(), e.getEnergia());
 			}
 			
 			// Si se tiene que pasar el satelite, se agrega la informacion de que hay un enemigo al mapa
@@ -86,10 +82,6 @@ public class PokemonPerception extends Perception {
 		// Si el agente esta en el nodo del jefe final, se le pasa la energia del jefe
 		if (environmentState.getPosicionAgente() == environmentState.getJefeFinal().getNodo()) {
 			energiaEnemigoEnNodoActual = environmentState.getJefeFinal().getEnergia();
-		}
-		
-		if (environmentState.getMapaSucesoresAmbiente().get(environmentState.getPosicionAgente()).contains(Const.nodoPosicionEnemigoFinal)) {
-			energiaEnemigosSucesores.put(Const.nodoPosicionEnemigoFinal, environmentState.getJefeFinal().getEnergia());
 		}
     }
 

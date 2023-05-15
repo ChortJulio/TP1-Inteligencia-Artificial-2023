@@ -16,7 +16,7 @@ public class Enemigo {
 	
 	public Enemigo(int nodo) {
 		this.nodo = nodo;
-		this.energia = Const.randomBetween(Const.vidaMaximoEnemigo, Const.vidaMinimoEnemigo);
+		this.energia = Const.randomBetween(Const.energiaMaximoEnemigo, Const.energiaMinimoEnemigo);
 		this.turnosHastaMoverse = Const.randomBetween(Const.turnosMaximoHastaMoverseEnemigo, Const.turnosMinimoHastaMoverseEnemigo);
 	}
 	

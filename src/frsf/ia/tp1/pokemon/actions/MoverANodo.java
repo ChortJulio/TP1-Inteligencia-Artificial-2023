@@ -53,29 +53,15 @@ public class MoverANodo extends SearchAction {
 		PokemonEnvironmentState pokemonEnvironmentState = (PokemonEnvironmentState) est;
 		PokemonAgentState pokemonState = ((PokemonAgentState) ast);
 		
-		HashMap<Integer, Integer> mapaAImprimir = new LinkedHashMap<>();
-		
 		int nodoActualAgente = pokemonEnvironmentState.getPosicionAgente();
 		
 		if (pokemonState.estaVivo() 
 				&& pokemonEnvironmentState.getMapaSucesoresAmbiente().get(nodoActualAgente).contains(this.nodo) 
 				&& pokemonState.puedeMoverse(this.nodo)) {
+			
 			pokemonEnvironmentState.setPosicionAgente(this.nodo);
 			
-			this.avanzarTurno(pokemonState, pokemonEnvironmentState);	
-			
-			for (Integer nodo : pokemonEnvironmentState.getMapaAmbiente().keySet()) {
-				mapaAImprimir.put(nodo, pokemonEnvironmentState.getMapaAmbiente().get(nodo));
-			}
-			
-			for (Enemigo e : pokemonEnvironmentState.getListaEnemigos()) {
-				mapaAImprimir.put(e.getNodo(), 1);
-			}
-			
-			System.out.println("---- Mapa ambiente ----");
-			Const.imprimirMapaActual("mover a nodo", mapaAImprimir, this.nodo);
-//			System.out.println("---- Mapa agente ----");
-//			Const.imprimirMapaActual("mover a nodo", pokemonState.getMapaAgente(), this.nodo);
+			this.avanzarTurno(pokemonState, pokemonEnvironmentState);
 			
 			return pokemonEnvironmentState;
 		}

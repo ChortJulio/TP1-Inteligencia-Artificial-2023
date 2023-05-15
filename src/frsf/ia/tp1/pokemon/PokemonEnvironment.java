@@ -10,7 +10,7 @@ public class PokemonEnvironment extends Environment{
 		// Create the environment state
 		PokemonEnvironmentState enviroment = new PokemonEnvironmentState();
 		this.environmentState = enviroment;
-		Const.imprimirMapaActual("Inicializar", enviroment.getMapaAmbiente(), enviroment.getPosicionAgente());
+//		Const.imprimirMapaActual("Inicializar", enviroment.getMapaAmbiente(), enviroment.getPosicionAgente());
 	}
 
 	@Override
@@ -38,12 +38,6 @@ public class PokemonEnvironment extends Environment{
 
         PokemonEnvironmentState pokemonEnvironmentState = this.getEnvironmentState();
 
-//        int agentEnergy = pokemonEnvironmentState.getAgentEnergy();
-//
-//        // FIXME: The pacman agent always has the same energy
-//        // If the agent has no energy, he failed
-//        if (agentEnergy <= 0)
-//            return true;
 
         return false;
     }

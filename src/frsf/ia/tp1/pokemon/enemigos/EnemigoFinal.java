@@ -15,6 +15,6 @@ public class EnemigoFinal {
 	
 	public EnemigoFinal(int nodo) {
 		this.nodo = nodo;
-		this.energia = Const.vidaEnemigoFinal;
+		this.energia = Const.energiaEnemigoFinal;
 	}
 }

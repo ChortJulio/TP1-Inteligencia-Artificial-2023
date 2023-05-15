@@ -23,9 +23,7 @@ public class Curarse extends SearchAction {
 			
 			pokemonState.recargarEnergia(Const.randomBetween(Const.energiaMaximaRecargable, Const.energiaMinimaRecargable));
 			pokemonState.getMapaAgente().put(nodoActual, 0);
-			
-			//System.out.println("por dios ayuda");
-			//System.out.println(pokemonState);
+
 			return pokemonState;
 		}
 		
@@ -54,13 +52,10 @@ public class Curarse extends SearchAction {
 			// Actualizar ambiente
 			pokemonEnviromentState.getMapaAmbiente().put(nodoActualAgente, 0);
 			
-			for (Pokeparada pokeparada : pokemonEnviromentState.getListaPokeparadas()) {
-				if (pokeparada.getNodo() == nodoActualAgente) {
-					pokeparada.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokeparadas);
-					break;
-				}
-			}
-			
+			pokemonEnviromentState.getListaPokeparadas()
+						.stream()
+						.filter(p -> p.getNodo() == nodoActualAgente)
+						.findFirst().ifPresent(p -> p.setTurnosParaRestablecerse(Const.turnosMaximosParaReabastecerPokeparadas));			
 			
 			return pokemonEnviromentState;
 		}
