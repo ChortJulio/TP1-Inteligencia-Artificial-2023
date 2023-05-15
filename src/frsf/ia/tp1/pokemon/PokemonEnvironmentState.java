@@ -152,9 +152,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 	private boolean existeEnemigo(Integer nodo) {
 		return listaEnemigos.stream().anyMatch(e -> e.getNodo() == nodo);
 	}
-	/*
-	 * Environment: PokemonEnvironmentState(posicionAgente=4, listaEnemigos=[], jefeFinal=EnemigoFinal(nodo=5, energia=5), listaPokeparadas=[Pokeparada(nodo=6, turnosParaRestablecerse=5)], turnosRestantesParaUtilizarSatelite=9)
-*/
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public String toString() {

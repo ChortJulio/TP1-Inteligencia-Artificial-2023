@@ -172,17 +172,6 @@ public class Const {
 	}
 	
 	public static ArrayList<Integer> calcularDistanciaAEnemigoFinal() {
-//		List<Integer> nodos = new ArrayList<>();
-//		HashMap<Integer, Integer> distancias = new HashMap<>();
-//		PriorityQueue<Integer> cola = new PriorityQueue<>((e1, e2) -> distancias.get(e1).compareTo(e2));
-//		
-//		Integer nodoOrigen = nodoPosicionEnemigoFinal;
-//		Integer nodoDestino = nodoInicialAgente;
-//		
-//		for (int i=1; i<=cantidadNodos; i++) {
-//			nodos.add(i);
-//			distancias.put(i, Integer.MAX_VALUE);
-//		}
 		
 		return new ArrayList<Integer>(List.of(
 				6, // Nodo 1
@@ -215,22 +204,6 @@ public class Const {
 				4, // Nodo 28
 				3 // Nodo 29				
 				));
-		
-//		distancias.put(nodoOrigen, 0);
-//		cola.offer(nodoOrigen);
-//		
-//		System.out.println(cola);
-//		
-//		while (!cola.isEmpty()) {
-//			Integer nodo = cola.poll();
-//			
-//			if (distancias.get(nodo) > distancias[nodoActual.indice]) {
-//                continue;
-//            }
-//			for (Integer sucesor : Const.mapaSucesoresAgenteInicial.get(nodo)) {
-//				
-//			}
-//		}
 	}
 
 }

@@ -23,11 +23,7 @@ public class Pelear extends SearchAction {
 		
 		if ( pokemonState.estaVivo() && 
 			(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
-			 !pokemonState.escapo()) {
-			
-			//System.out.println("--------- Pelear --------- ");
-			//System.out.println(pokemonState);
-			
+			 !pokemonState.escapo()) {			
 		
 			if (pokemonState.getMapaAgente().get(nodoActual) == 3) energiaEnemigo = pokemonState.getEnergiaEnemigoFinal();
 			else energiaEnemigo = pokemonState.getEnergiaEnemigo();
@@ -67,8 +63,6 @@ public class Pelear extends SearchAction {
 		if ( pokemonState.estaVivo() && 
 				(pokemonState.getMapaAgente().get(nodoActual) == 1 || pokemonState.getMapaAgente().get(nodoActual) == 3) &&
 				 !pokemonState.escapo()) {
-			
-			//System.out.println("Pelear dentro del execute del ambiente");
 			
 			if (pokemonState.getEscudo() < pokemonState.getEnergiaEnemigo()) {
 				pokemonState.setEnergia(pokemonState.getEnergia() - (pokemonState.getEnergiaEnemigo() - pokemonState.getEscudo()));
