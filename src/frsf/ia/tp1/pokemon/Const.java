@@ -21,7 +21,7 @@ public class Const {
 	public static int energiaMinimaInicialAgente = 10;
 	public static int energiaMaximoEnemigo = 10;
 	public static int energiaMinimoEnemigo = 5;
-	public static int energiaMaximoEnemigoFinal = 45;
+	public static int energiaMaximoEnemigoFinal = 50;
 	public static int energiaMinimoEnemigoFinal = 40;
 	public static int turnosMaximoHastaMoverseEnemigo = 3;
 	public static int turnosMinimoHastaMoverseEnemigo = 1;
